@@ -1,0 +1,7 @@
+# Build Artifacts
+lexer
+src/lex.yy.c
+*.o
+
+# Temporary Files
+specs_strings.txt
