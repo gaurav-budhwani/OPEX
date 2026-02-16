@@ -1,0 +1,109 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{hyperref}
+
+% Page Margins
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+
+% Styling
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=style}
+
+\title{\textbf{CS327: Compilers} \\ Assignment 2: Lexical Analyzer}
+\author{
+    \textbf{Group Members:} \\
+    Gaurav Budhwani (22110085) \\
+    John Twipraham Debbarma (22110108) \\
+    Harshit (22110095)
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This report documents the implementation of the Lexical Analyzer for the \textbf{OPEX} programming language. The lexer uses \textbf{Flex} to tokenize the source code based on the language specifications.
+
+\section{Regex Patterns}
+The following regular expressions are used to define the tokens:
+
+\begin{itemize}
+    \item \textbf{Identifier:} \texttt{[a-zA-Z\_][a-zA-Z0-9\_]*}
+    \item \textbf{Integer:} \texttt{[0-9]+}
+    \item \textbf{Float:} \texttt{[0-9]+\textbackslash.[0-9]+([eE][+-]?[0-9]+)?}
+    \item \textbf{String:} \texttt{"[\textasciicircum"\textbackslash n]*"}
+    \item \textbf{Operators:} \texttt{:=, .., ++, --, +, -, *, /, \%, ==, !=, <, >, <=, >=, |>, **}
+\end{itemize}
+
+\section{Source Code}
+\subsection{lexer.l}
+The main Flex specification file handles token recognition.
+
+\lstinputlisting[language=C, caption=lexer.l]{src/lexer.l}
+
+\subsection{Makefile}
+The build system compiles the lexer using \texttt{flex} and \texttt{gcc}.
+
+\lstinputlisting[language=make, caption=Makefile]{Makefile}
+
+\section{Test Cases}
+We tested the lexer with various OPEX programs.
+
+\subsection{Test 1: Matrix Operations (sample.axi)}
+This test checks matrix declaration, loops, and slicing.
+
+\lstinputlisting[language=C, caption=sample.axi]{tests/sample.axi}
+
+\textbf{Output (Snippet):}
+\begin{verbatim}
+KW_PROG: PROGRAM
+ID: MatrixMagic
+KW_COMPOSITE: STRUCT
+ID: Pixel
+...
+\end{verbatim}
+
+\subsection{Test 2: Prime Check (prime.axi)}
+This test verifies boolean logic, conditionals, and arithmetic operators.
+
+\lstinputlisting[language=C, caption=prime.axi]{tests/prime.axi}
+
+\subsection{Test 3: Edge Detection (edge.axi)}
+This test verifies kernel definitions and pipeline operators.
+
+\lstinputlisting[language=C, caption=edge.axi]{tests/edge_detection.axi}
+
+
+\end{document}
