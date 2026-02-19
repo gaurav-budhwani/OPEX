@@ -33,7 +33,6 @@ INTEGER     [0-9]+
 "ENDMATCH"                  { printf("KW_FLOW: %s\n", yytext); }
 "IF"|"THEN"|"ELSE"|"ENDIF"  { printf("KW_FLOW: %s\n", yytext); }
 "FOR"|"FOREACH"|"IN"        { printf("KW_LOOP: %s\n", yytext); }
-"TO"|"DO"|"ENDFOR"|"STEP"   { printf("KW_LOOP_CTRL: %s\n", yytext); }
 "PRINT"|"INPUT"             { printf("KW_IO: %s\n", yytext); }
 "TRUE"|"FALSE"              { printf("BOOL_VAL: %s\n", yytext); }
 "AND"|"OR"|"NOT"            { printf("LOGIC_OP: %s\n", yytext); }
@@ -50,9 +49,6 @@ INTEGER     [0-9]+
 ":="        { printf("ASSIGN: %s\n", yytext); }
 ".."        { printf("RANGE_OP: %s\n", yytext); }
 "++"|"--"   { printf("INC_DEC: %s\n", yytext); }
-"+"|"-"     { printf("ADD_OP: %s\n", yytext); }
-"*"|"/"|"%" { printf("MULT_OP: %s\n", yytext); }
-"=="|"!="|"<"|">"|"<="|">=" { printf("RELOP: %s\n", yytext); }
 "+="                        { printf("PLUS_ASSIGN: %s\n", yytext); }
 "-="                        { printf("MINUS_ASSIGN: %s\n", yytext); }
 "*="                        { printf("MULT_ASSIGN: %s\n", yytext); }
@@ -60,6 +56,10 @@ INTEGER     [0-9]+
 
 "**"                        { printf("CONV_OP: %s\n", yytext); }
 "|>"                        { printf("PIPE_OP: %s\n", yytext); }
+"+"|"-"     { printf("ADD_OP: %s\n", yytext); }
+"*"|"/"|"%" { printf("MULT_OP: %s\n", yytext); }
+"=="|"!="|"<"|">"|"<="|">=" { printf("RELOP: %s\n", yytext); }
+
 
     /* SEPARATORS */
 "["|"]"|"("|")"|":"|","|"."|";" { printf("SEP: %s\n", yytext); }
