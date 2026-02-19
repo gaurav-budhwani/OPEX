@@ -59,7 +59,7 @@ INTEGER     [0-9]+
 "|>"                        { printf("PIPE_OP: %s\n", yytext); }
 "+"|"-"     { printf("ADD_OP: %s\n", yytext); }
 "*"|"/"|"%" { printf("MULT_OP: %s\n", yytext); }
-"=="|"!="|"<"|">"|"<="|">=" { printf("RELOP: %s\n", yytext); }
+"=="|"!="|"<="|">="|"<"|">" { printf("RELOP: %s\n", yytext); }
 
 
     /* SEPARATORS */
