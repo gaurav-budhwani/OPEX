@@ -36,6 +36,7 @@ INTEGER     [0-9]+
 "PRINT"|"INPUT"             { printf("KW_IO: %s\n", yytext); }
 "TRUE"|"FALSE"              { printf("BOOL_VAL: %s\n", yytext); }
 "AND"|"OR"|"NOT"            { printf("LOGIC_OP: %s\n", yytext); }
+"TO"|"DO"|"ENDFOR"|"STEP"   { printf("KW_LOOP_CTRL: %s\n", yytext); }
 "WHILE"                     { printf("KW_LOOP: %s\n", yytext); }
 "ENDWHILE"                  { printf("KW_LOOP: %s\n", yytext); }
 
