@@ -79,7 +79,7 @@ The build system compiles the lexer using \texttt{flex} and \texttt{gcc}.
 \lstinputlisting[language=make, caption=Makefile]{Makefile}
 
 \section{Test Cases}
-We tested the lexer with various OPEX programs.
+We tested the lexer with various OPEX programs covering different language features.
 
 \subsection{Test 1: Matrix Operations (sample.axi)}
 This test checks matrix declaration, loops, and slicing.
@@ -105,5 +105,19 @@ This test verifies kernel definitions and pipeline operators.
 
 \lstinputlisting[language=C, caption=edge.axi]{tests/edge_detection.axi}
 
+\subsection{Test 4: Palindrome Check (palindrome.axi)}
+This test verifies relational operators (==, !=) and while loops.
+
+\lstinputlisting[language=C, caption=palindrome.axi]{tests/palindrome.axi}
+
+\subsection{Test 5: Matrix Multiplication (matrix\_mult.axi)}
+This test demonstrates nested loops and 2D array access.
+
+\lstinputlisting[language=C, caption=matrix\_mult.axi]{tests/matrix_mult.axi}
+
+\subsection{Test 6: Recursive Fibonacci (fibonacci.axi)}
+This test demonstrates global function definition and recursion.
+
+\lstinputlisting[language=C, caption=fibonacci.axi]{tests/fibonacci.axi}
 
 \end{document}

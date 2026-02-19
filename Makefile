@@ -11,3 +11,9 @@ test: lexer
 
 clean:
 	rm -f src/lex.yy.c lexer
+
+test_all: lexer
+	for f in tests/*.axi; do \
+		echo "Testing $$f..."; \
+		./lexer < "$$f" > /dev/null && echo "Pass" || echo "Fail"; \
+	done
