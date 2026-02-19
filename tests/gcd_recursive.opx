@@ -1,9 +1,5 @@
-PROGRAM GCCCheck
-BEGIN
-    VAR n1 : INT;
-    VAR n2 : INT;
-    VAR result : INT;
-
+PROGRAM GCDRecursive
+    // Recursive Function Definition
     FUNCTION gcd(a : INT, b : INT) : INT
     BEGIN
         IF b == 0 THEN
@@ -13,10 +9,18 @@ BEGIN
         ENDIF
     END
 
-    PRINT "Enter two positive integers: ";
-    INPUT n1;
-    INPUT n2;
+MAIN
+BEGIN
+    VAR num1 : INT;
+    VAR num2 : INT;
+    VAR result : INT;
 
-    result := gcd(n1, n2);
-    PRINT "G.C.D of {n1} and {n2} is {result}.";
+    PRINT "Enter first number:";
+    INPUT num1;
+    PRINT "Enter second number:";
+    INPUT num2;
+
+    result := gcd(num1, num2);
+    
+    PRINT "GCD of {num1} and {num2} is {result}";
 END

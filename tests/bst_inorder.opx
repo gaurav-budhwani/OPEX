@@ -1,33 +1,52 @@
-PROGRAM BSTInOrder
-BEGIN
-    VAR tree : ARRAY[100] OF INT; // Array based BST
-    VAR n : INT;
-    VAR i : INT;
+PROGRAM TreeTraversal
+    // Tree represented as array. -1 indicates NULL.
+    VAR tree : ARRAY[15] OF INT;
 
     FUNCTION inOrder(index : INT) : VOID
     BEGIN
-        IF index >= 100 OR tree[index] == -1 THEN
-            RETURN; // NULL equivalent
+        VAR left : INT;
+        VAR right : INT;
+
+        // Check for "NULL" or out of bounds
+        IF index >= 15 OR tree[index] == -1 THEN
+            RETURN;
         ENDIF
 
-        inOrder(2 * index);     // Left child
-        PRINT "{tree[index]} "; // Root
-        inOrder(2 * index + 1); // Right child
+        left := (2 * index) + 1;
+        right := (2 * index) + 2;
+
+        // Traverse Left
+        inOrder(left);
+
+        // Visit Node
+        PRINT tree[index];
+
+        // Traverse Right
+        inOrder(right);
     END
 
-    // Initialize tree with -1 (empty)
-    FOR i := 0 TO 99 DO
+MAIN
+BEGIN
+    VAR i : INT;
+
+    // Initialize "NULL" values
+    FOR i := 0 TO 14 DO
         tree[i] := -1;
     ENDFOR
 
-    // Hardcoded tree for testing
+    // Construct Tree:
     //      10
     //     /  \
-    //    5    15
-    tree[1] := 10;
-    tree[2] := 5;
-    tree[3] := 15;
+    //    5    20
+    //   / \
+    //  3   7
+    tree[0] := 10; // Root
+    tree[1] := 5;  // Left of 10
+    tree[2] := 20; // Right of 10
+    tree[3] := 3;  // Left of 5
+    tree[4] := 7;  // Right of 5
 
-    PRINT "In-order Traversal:";
-    inOrder(1);
+    PRINT "In-Order Traversal:";
+    inOrder(0); 
+    // Output should be: 3, 5, 7, 10, 20
 END

@@ -1,30 +1,33 @@
-PROGRAM PrimeFactorization
+PROGRAM PrimeFactorisation
 BEGIN
     VAR n : INT;
-    VAR i : INT;
+    VAR d : INT;
 
-    PRINT "Enter a number to find prime factors:";
+    PRINT "Enter a positive integer:";
     INPUT n;
-
     PRINT "Prime factors of {n}:";
 
-    // Print the number of 2s that divide n
+    // Step 1: Handle divisibility by 2
     WHILE (n % 2) == 0 DO
-        PRINT "2 ";
+        PRINT 2;
         n := n / 2;
     ENDWHILE
 
-    // n must be odd at this point. So we can skip one element (Note i = i + 2)
-    FOR i := 3 TO n / 2 STEP 2 DO
-        WHILE (n % i) == 0 DO
-            PRINT "{i} ";
-            n := n / i;
+    // Step 2: Iterate odd numbers starting from 3
+    d := 3;
+    // Loop while d squared is less than or equal to n
+    WHILE (d * d) <= n DO
+        // While n is divisible by d, print d and divide n
+        WHILE (n % d) == 0 DO
+            PRINT d;
+            n := n / d;
         ENDWHILE
-    ENDFOR
+        // Move to next odd number
+        d := d + 2;
+    ENDWHILE
 
-    // This condition is to handle the case when n is a prime number
-    // greater than 2
+    // Step 3: If n is a prime number greater than 2
     IF n > 2 THEN
-        PRINT "{n}";
+        PRINT n;
     ENDIF
 END

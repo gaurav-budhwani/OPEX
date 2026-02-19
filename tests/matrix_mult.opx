@@ -1,63 +1,38 @@
-PROGRAM MatrixMultiplication
+PROGRAM MatrixMult
 BEGIN
-    VAR r1 : INT;
-    VAR c1 : INT;
-    VAR r2 : INT;
-    VAR c2 : INT;
+    VAR A : ARRAY[3][3] OF INT;
+    VAR B : ARRAY[3][3] OF INT;
+    VAR C : ARRAY[3][3] OF INT;
     VAR i : INT;
     VAR j : INT;
     VAR k : INT;
-    VAR a : ARRAY[10][10] OF INT;
-    VAR b : ARRAY[10][10] OF INT;
-    VAR result : ARRAY[10][10] OF INT;
 
-    PRINT "Enter rows and columns for first matrix: ";
-    INPUT r1;
-    INPUT c1;
-    PRINT "Enter rows and columns for second matrix: ";
-    INPUT r2;
-    INPUT c2;
-
-    IF c1 != r2 THEN
-        PRINT "Matrix multiplication not possible.";
-        RETURN;
-    ENDIF
-
-    PRINT "Enter elements of matrix 1:";
-    FOR i := 0 TO r1 - 1 DO
-        FOR j := 0 TO c1 - 1 DO
-            INPUT a[i][j];
+    // Initialize Matrix A (Identity)
+    FOR i := 0 TO 2 DO
+        FOR j := 0 TO 2 DO
+            IF i == j THEN 
+                A[i][j] := 1; 
+            ELSE 
+                A[i][j] := 0; 
+            ENDIF
+            // Fill B with some values
+            B[i][j] := i + j;
+            // Initialize Result C
+            C[i][j] := 0;
         ENDFOR
     ENDFOR
 
-    PRINT "Enter elements of matrix 2:";
-    FOR i := 0 TO r2 - 1 DO
-        FOR j := 0 TO c2 - 1 DO
-            INPUT b[i][j];
-        ENDFOR
-    ENDFOR
+    PRINT "Calculating Product...";
 
-    // Initialize result matrix
-    FOR i := 0 TO r1 - 1 DO
-        FOR j := 0 TO c2 - 1 DO
-            result[i][j] := 0;
-        ENDFOR
-    ENDFOR
-
-    // Multiply
-    FOR i := 0 TO r1 - 1 DO
-        FOR j := 0 TO c2 - 1 DO
-            FOR k := 0 TO c1 - 1 DO
-                result[i][j] += a[i][k] * b[k][j];
+    // C[i][j] = Sum(A[i][k] * B[k][j])
+    FOR i := 0 TO 2 DO
+        FOR j := 0 TO 2 DO
+            FOR k := 0 TO 2 DO
+                C[i][j] := C[i][j] + (A[i][k] * B[k][j]);
             ENDFOR
         ENDFOR
     ENDFOR
 
-    PRINT "Resultant Matrix:";
-    FOR i := 0 TO r1 - 1 DO
-        FOR j := 0 TO c2 - 1 DO
-            PRINT "{result[i][j]} ";
-        ENDFOR
-        PRINT "\n";
-    ENDFOR
+    PRINT "Result Matrix C (Row 0):";
+    PRINT C[0][0]; PRINT C[0][1]; PRINT C[0][2];
 END

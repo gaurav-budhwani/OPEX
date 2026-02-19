@@ -1,38 +1,50 @@
-PROGRAM DFSAlgorithm
-BEGIN
-    VAR visited : ARRAY[10] OF INT;
-    VAR adj : ARRAY[10][10] OF INT;
-    VAR n : INT;
-    VAR i : INT;
-    VAR j : INT;
-    VAR startNode : INT;
+PROGRAM GraphDFS
+    // Global Adjacency Matrix (5 nodes)
+    // 1 indicates connection, 0 indicates no connection
+    VAR adj : ARRAY[5][5] OF INT;
+    VAR visited : ARRAY[5] OF BOOL;
 
-    FUNCTION DFS(u : INT) : VOID
+    FUNCTION dfs(u : INT) : VOID
     BEGIN
         VAR v : INT;
-        PRINT "{u} ";
-        visited[u] := 1;
-        FOR v := 0 TO n - 1 DO
-            IF adj[u][v] == 1 AND visited[v] == 0 THEN
-                DFS(v);
+        
+        PRINT "Visiting Node: {u}";
+        visited[u] := TRUE;
+
+        // Iterate through all possible neighbors
+        FOR v := 0 TO 4 DO
+            // If connected and not yet visited
+            IF adj[u][v] == 1 AND visited[v] == FALSE THEN
+                dfs(v);
             ENDIF
         ENDFOR
     END
 
-    PRINT "Enter number of nodes:";
-    INPUT n;
+MAIN
+BEGIN
+    VAR i : INT;
+    VAR j : INT;
 
-    PRINT "Enter adjacency matrix:";
-    FOR i := 0 TO n - 1 DO
-        visited[i] := 0;
-        FOR j := 0 TO n - 1 DO
-            INPUT adj[i][j];
+    // Initialize Graph (Example Structure)
+    // 0 -- 1 -- 2
+    // |    |
+    // 3 -- 4
+    
+    // Clear Matrix
+    FOR i := 0 TO 4 DO
+        visited[i] := FALSE;
+        FOR j := 0 TO 4 DO
+            adj[i][j] := 0;
         ENDFOR
     ENDFOR
 
-    PRINT "Enter start node:";
-    INPUT startNode;
+    // Manual Edge Setup (undirected)
+    adj[0][1] := 1; adj[1][0] := 1;
+    adj[0][3] := 1; adj[3][0] := 1;
+    adj[1][2] := 1; adj[2][1] := 1;
+    adj[1][4] := 1; adj[4][1] := 1;
+    adj[3][4] := 1; adj[4][3] := 1;
 
-    PRINT "DFS Traversal:";
-    DFS(startNode);
+    PRINT "Starting DFS from Node 0:";
+    dfs(0);
 END

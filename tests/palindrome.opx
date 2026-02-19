@@ -1,27 +1,25 @@
 PROGRAM PalindromeCheck
 BEGIN
-    VAR n : INT;
-    VAR reversedInteger : INT;
+    VAR original : INT;
+    VAR reversed : INT;
     VAR remainder : INT;
-    VAR originalInteger : INT;
+    VAR temp : INT;
 
-    PRINT "Enter an integer: ";
-    INPUT n;
+    PRINT "Enter an integer:";
+    INPUT original;
 
-    originalInteger := n;
-    reversedInteger := 0;
+    reversed := 0;
+    temp := original;
 
-    // reversed integer is stored in variable 
-    WHILE ( n != 0 ) DO
-        remainder := n % 10;
-        reversedInteger := reversedInteger * 10 + remainder;
-        n := n / 10;
+    WHILE temp > 0 DO
+        remainder := temp % 10;
+        reversed := (reversed * 10) + remainder;
+        temp := temp / 10;
     ENDWHILE
 
-    // palindrome if orignalInteger and reversedInteger are equal
-    IF originalInteger == reversedInteger THEN
-        PRINT "{originalInteger} is a palindrome.";
+    IF original == reversed THEN
+        PRINT "{original} is a palindrome.";
     ELSE
-        PRINT "{originalInteger} is not a palindrome.";
+        PRINT "{original} is NOT a palindrome.";
     ENDIF
 END
