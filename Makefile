@@ -1,19 +1,27 @@
-all: lexer
+CC = gcc
+CFLAGS = -I src
+FLEX = flex
+BISON = bison
 
-lexer: src/lex.yy.c
-	gcc src/lex.yy.c -o lexer -I src
+all: parser
 
-src/lex.yy.c: src/lexer.l
-	flex -o src/lex.yy.c src/lexer.l
+parser: src/lex.yy.c src/parser.tab.c
+	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c -o parser
 
-test: lexer
-	./lexer < tests/sample.opx
+src/lex.yy.c: src/lexer.l src/parser.tab.h
+	$(FLEX) -o src/lex.yy.c src/lexer.l
+
+src/parser.tab.c src/parser.tab.h: src/parser.y
+	$(BISON) -d -o src/parser.tab.c src/parser.y
+
+test: parser
+	./parser < tests/sample.opx
+
+test_all: parser
+	@for f in tests/*.opx; do \
+		echo -n "Testing $$f... "; \
+		./parser < "$$f"; \
+	done
 
 clean:
-	rm -f src/lex.yy.c lexer
-
-test_all: lexer
-	for f in tests/*.opx; do \
-		echo "Testing $$f..."; \
-		./lexer < "$$f" > /dev/null && echo "Pass" || echo "Fail"; \
-	done
+	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h parser

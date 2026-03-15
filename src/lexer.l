@@ -1,7 +1,7 @@
 %option noyywrap case-sensitive
 %{
 #include <stdio.h>
-/* In A3, we will include "y.tab.h" here */
+#include "parser.tab.h"
 int line_num = 1;
 %}
 
@@ -16,62 +16,117 @@ FLOAT       [0-9]+\.[0-9]+([eE][+-]?[0-9]+)?
 INTEGER     [0-9]+
 
 %%
-"//".* { /* Ignore Single line */ }
+"//".*                      { /* Ignore Single line */ }
 "/*"([^*]|\*+[^*/])*\*+"/"  { /* Ignore Block comment */ }
 [ \t\r]                     { /* Ignore whitespace */ }
 \n                          { line_num++; }
 
     /* KEYWORDS */
-"PROGRAM"|"BEGIN"|"END"     { printf("KW_PROG: %s\n", yytext); }
-"FUNCTION"|"RETURN"|"MAIN"  { printf("KW_FUNC: %s\n", yytext); }
-"STRUCT"|"ENDSTRUCT"        { printf("KW_COMPOSITE: %s\n", yytext); }
-"VAR"|"AUTO"|"ARRAY"|"OF"   { printf("KW_DECL: %s\n", yytext); }
-"INT"|"FLOAT"|"BOOL"|"STRING"|"VOID" { printf("TYPE: %s\n", yytext); }
-"IMAGE"|"MATRIX"|"KERNEL"|"PIXEL"    { printf("TYPE_CV: %s\n", yytext); }
-"MATCH"                     { printf("KW_FLOW: %s\n", yytext); }
-"WHEN"                      { printf("KW_FLOW: %s\n", yytext); }
-"ENDMATCH"                  { printf("KW_FLOW: %s\n", yytext); }
-"IF"|"THEN"|"ELSE"|"ENDIF"  { printf("KW_FLOW: %s\n", yytext); }
-"FOR"|"FOREACH"|"IN"        { printf("KW_LOOP: %s\n", yytext); }
-"PRINT"|"INPUT"             { printf("KW_IO: %s\n", yytext); }
-"TRUE"|"FALSE"              { printf("BOOL_VAL: %s\n", yytext); }
-"AND"|"OR"|"NOT"            { printf("LOGIC_OP: %s\n", yytext); }
-"TO"|"DO"|"ENDFOR"|"STEP"   { printf("KW_LOOP_CTRL: %s\n", yytext); }
-"WHILE"                     { printf("KW_LOOP: %s\n", yytext); }
-"ENDWHILE"                  { printf("KW_LOOP: %s\n", yytext); }
+"PROGRAM"                   { return TOK_PROGRAM; }
+"BEGIN"                     { return TOK_BEGIN; }
+"END"                       { return TOK_END; }
+"FUNCTION"                  { return TOK_FUNCTION; }
+"RETURN"                    { return TOK_RETURN; }
+"MAIN"                      { return TOK_MAIN; }
+"STRUCT"                    { return TOK_STRUCT; }
+"ENDSTRUCT"                 { return TOK_ENDSTRUCT; }
+"VAR"                       { return TOK_VAR; }
+"AUTO"                      { return TOK_AUTO; }
+"ARRAY"                     { return TOK_ARRAY; }
+"OF"                        { return TOK_OF; }
 
-"LOAD"|"SAVE"               { printf("KW_IMG_IO: %s\n", yytext); }
-"GRAYSCALE"|"HSV"           { printf("KW_IMG_OP: %s\n", yytext); }
-"BLUR"|"THRESHOLD"|"CANNY"  { printf("KW_IMG_OP: %s\n", yytext); }
-"RESIZE"|"ROTATE"           { printf("KW_IMG_OP: %s\n", yytext); }
-"ERODE"|"DILATE"|"FLIP"     { printf("KW_IMG_OP: %s\n", yytext); }
+    /* TYPES */
+"INT"                       { return TOK_INT; }
+"FLOAT"                     { return TOK_FLOAT; }
+"BOOL"                      { return TOK_BOOL; }
+"STRING"                    { return TOK_STRING; }
+"VOID"                      { return TOK_VOID; }
+"IMAGE"                     { return TOK_IMAGE; }
+"MATRIX"                    { return TOK_MATRIX; }
+"KERNEL"                    { return TOK_KERNEL; }
+"PIXEL"                     { return TOK_PIXEL; }
+
+    /* CONTROL FLOW */
+"MATCH"                     { return TOK_MATCH; }
+"WHEN"                      { return TOK_WHEN; }
+"ENDMATCH"                  { return TOK_ENDMATCH; }
+"IF"                        { return TOK_IF; }
+"THEN"                      { return TOK_THEN; }
+"ELSE"                      { return TOK_ELSE; }
+"ENDIF"                     { return TOK_ENDIF; }
+"FOR"                       { return TOK_FOR; }
+"FOREACH"                   { return TOK_FOREACH; }
+"IN"                        { return TOK_IN; }
+"WHILE"                     { return TOK_WHILE; }
+"ENDWHILE"                  { return TOK_ENDWHILE; }
+"TO"                        { return TOK_TO; }
+"DO"                        { return TOK_DO; }
+"ENDFOR"                    { return TOK_ENDFOR; }
+"STEP"                      { return TOK_STEP; }
+
+    /* I/O AND BUILT-INS */
+"PRINT"                     { return TOK_PRINT; }
+"INPUT"                     { return TOK_INPUT; }
+"TRUE"                      { return TOK_TRUE; }
+"FALSE"                     { return TOK_FALSE; }
+"LOAD"                      { return TOK_LOAD; }
+"SAVE"                      { return TOK_SAVE; }
+"GRAYSCALE"                 { return TOK_GRAYSCALE; }
+"HSV"                       { return TOK_HSV; }
+"BLUR"                      { return TOK_BLUR; }
+"THRESHOLD"                 { return TOK_THRESHOLD; }
+"CANNY"                     { return TOK_CANNY; }
+"RESIZE"                    { return TOK_RESIZE; }
+"ROTATE"                    { return TOK_ROTATE; }
+"ERODE"                     { return TOK_ERODE; }
+"DILATE"                    { return TOK_DILATE; }
+"FLIP"                      { return TOK_FLIP; }
+
+    /* LOGICAL OPERATORS */
+"AND"                       { return TOK_AND; }
+"OR"                        { return TOK_OR; }
+"NOT"                       { return TOK_NOT; }
 
     /* OPERATORS */
-":="        { printf("ASSIGN: %s\n", yytext); }
-".."        { printf("RANGE_OP: %s\n", yytext); }
-"++"|"--"   { printf("INC_DEC: %s\n", yytext); }
-"+="                        { printf("PLUS_ASSIGN: %s\n", yytext); }
-"-="                        { printf("MINUS_ASSIGN: %s\n", yytext); }
-"*="                        { printf("MULT_ASSIGN: %s\n", yytext); }
-"/="                        { printf("DIV_ASSIGN: %s\n", yytext); }
-
-"**"                        { printf("CONV_OP: %s\n", yytext); }
-"|>"                        { printf("PIPE_OP: %s\n", yytext); }
-"+"|"-"     { printf("ADD_OP: %s\n", yytext); }
-"*"|"/"|"%" { printf("MULT_OP: %s\n", yytext); }
-"=="|"!="|"<="|">="|"<"|">" { printf("RELOP: %s\n", yytext); }
-
+":="                        { return TOK_ASSIGN; }
+".."                        { return TOK_RANGE; }
+"++"                        { return TOK_INC; }
+"--"                        { return TOK_DEC; }
+"+="                        { return TOK_PLUS_ASSIGN; }
+"-="                        { return TOK_MINUS_ASSIGN; }
+"*="                        { return TOK_MULT_ASSIGN; }
+"/="                        { return TOK_DIV_ASSIGN; }
+"**"                        { return TOK_CONV_OP; }
+"|>"                        { return TOK_PIPE_OP; }
+"+"                         { return TOK_PLUS; }
+"-"                         { return TOK_MINUS; }
+"*"                         { return TOK_MULT; }
+"/"                         { return TOK_DIV; }
+"%"                         { return TOK_MOD; }
+"=="                        { return TOK_EQ; }
+"!="                        { return TOK_NEQ; }
+"<="                        { return TOK_LEQ; }
+">="                        { return TOK_GEQ; }
+"<"                         { return TOK_LT; }
+">"                         { return TOK_GT; }
 
     /* SEPARATORS */
-"["|"]"|"("|")"|":"|","|"."|";" { printf("SEP: %s\n", yytext); }
+"["                         { return TOK_LBRACKET; }
+"]"                         { return TOK_RBRACKET; }
+"("                         { return TOK_LPAREN; }
+")"                         { return TOK_RPAREN; }
+":"                         { return TOK_COLON; }
+","                         { return TOK_COMMA; }
+"."                         { return TOK_DOT; }
+";"                         { return TOK_SEMI; }
 
-{ID}        { printf("ID: %s\n", yytext); }
-{HEXINT}    { printf("HEX_INT: %s\n", yytext); }
-{FLOAT}     { printf("FLOAT_LIT: %s\n", yytext); }
-{INTEGER}   { printf("INT_LIT: %s\n", yytext); }
-{STRING}    { printf("STR: %s\n", yytext); }
+    /* LITERALS AND IDENTIFIERS */
+{ID}                        { return TOK_ID; }
+{HEXINT}                    { return TOK_HEX_INT; }
+{FLOAT}                     { return TOK_FLOAT_LIT; }
+{INTEGER}                   { return TOK_INT_LIT; }
+{STRING}                    { return TOK_STR; }
 
-.           { printf("ERR: %s line %d\n", yytext, line_num); }
+    /* ERROR HANDLING */
+.                           { printf("ERR: %s line %d\n", yytext, line_num); exit(1); }
 %%
-
-int main() { yylex(); return 0; }
