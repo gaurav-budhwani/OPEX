@@ -1,39 +1,49 @@
-# Syntax Analyzer
+# OPEX Language
 
-This branch contains the **Syntax Analyzer (Parser)** for the OPEX programming language, developed for CS327: Compilers.
+**OPEX** (Optimized Processing Engine for eXecution) is a domain-specific programming language designed for CS327: Compilers. It features strongly-typed semantics, built-in computer vision matrix operations, structured object constructs, and dynamic loop workflows.
 
-## Team
+---
+
+## Language Specifications
+
+The authoritative specifications for OPEX are provided in the `language_specifications.pdf`. This defines the Lexical rules, Context-Free Grammar, constraints, scoping limits, and compiler expectations.
+
+### Core Features
+- **Strongly Typed**: Supports `INT`, `FLOAT`, `BOOL`, `STRING`, `VOID`.
+- **Implicit Typing**: Leverages `AUTO` keyword for type inference on assignment.
+- **Complex Structures**: User-defined `STRUCT` compositions supporting nested traits.
+- **Collections**: Supports 1D and 2D `ARRAY` constructs with advanced slicing options.
+- **Image Processing Types**: First-class support for `IMAGE`, `MATRIX`, `KERNEL`, and `PIXEL`.
+- **Advanced Control Flow**: Standard loops (`FOR`, `WHILE`), traversals (`FOREACH IN`), and robust pattern matching (`MATCH ... WHEN`).
+- **Computer Vision Operators**: Built-in convolution (`**`) and filter pipelines (`|>` for chaining).
+
+### Example: Edge Detection
+```opex
+PROGRAM EdgeDetection
+BEGIN
+    KERNEL sobelX := [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]]
+    AUTO img := LOAD("input.jpg")
+    AUTO gray := GRAYSCALE(img)
+    AUTO edges := (gray ** sobelX) |> THRESHOLD(50)
+    SAVE(edges, "edges.png")
+END
+```
+
+---
+
+## Architectural Branches
+
+The development cycle of the OPEX Compiler spans across different subsystems. Each phase of the compilation process is maintained in a distinct Git branch:
+
+### [`lexer` Branch](https://github.com/gaurav-budhwani/OPEX/tree/lexer)
+Contains the Lexical Analyzer (Scanner). Utilizes **Flex** to tokenize OPEX source files. Defines all Regex mappings and verifies that the provided keywords and operators are recognized correctly.
+
+### [`parser` Branch](https://github.com/gaurav-budhwani/OPEX/tree/parser)
+Contains the Syntax Analyzer. Utilizes **Bison (Yacc)** to evaluate the stream of tokens against the strict Context-Free Grammar of OPEX. Will catch syntax violations, bracket mismatches, and incorrect statement structuring. Includes comprehensive `.opx` integration tests.
+
+---
+
+## Contributors (CS327)
 - **Gaurav Budhwani** (22110085)
 - **John Twipraham Debbarma** (22110108)
 - **Harshit** (22110095)
-
-## Overview
-The Syntax Analyzer is built using **Bison (Yacc)** and **Flex**. It validates the syntax of OPEX programs against a defined Context-Free Grammar (CFG), supporting features like structs, matrix indexing, logic, loop controls, and image processing operations.
-
-## Project Structure
-- `src/parser.y`: The Bison grammar specification.
-- `src/lexer.l`: The Flex lexer modified to return Bison tokens.
-- `tests/`: 12 diverse `.opx` test files demonstrating language constructs.
-- `A3_Report.tex` / `A3_Report.pdf`: Comprehensive report including the CFG and deliverables.
-- `Makefile`: Build scripts to automate compilation.
-
-## How to Build & Test
-Ensure you have `gcc`, `flex`, and `bison` installed.
-
-1.  **Compile the Parser:**
-    ```bash
-    make
-    ```
-2.  **Run specific test file:**
-    ```bash
-    ./parser < tests/sample.opx
-    ```
-3.  **Run all test cases:**
-    ```bash
-    make test_all
-    ```
-
-If the syntax is correct, the parser will output:
-`Syntax Correct`
-
-Otherwise, it will output a granular line-by-line syntax error.
