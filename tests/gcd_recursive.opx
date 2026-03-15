@@ -1,0 +1,26 @@
+PROGRAM GCDRecursive
+    // Recursive Function Definition
+    FUNCTION gcd(a : INT, b : INT) : INT
+    BEGIN
+        IF b == 0 THEN
+            RETURN a;
+        ELSE
+            RETURN gcd(b, a % b);
+        ENDIF
+    END
+
+MAIN
+BEGIN
+    VAR num1 : INT;
+    VAR num2 : INT;
+    VAR result : INT;
+
+    PRINT "Enter first number:";
+    INPUT num1;
+    PRINT "Enter second number:";
+    INPUT num2;
+
+    result := gcd(num1, num2);
+    
+    PRINT "GCD of {num1} and {num2} is {result}";
+END
