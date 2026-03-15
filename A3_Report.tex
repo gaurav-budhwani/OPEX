@@ -1,0 +1,104 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{hyperref}
+
+% Page Margins
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+
+% Styling
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=style}
+
+\title{\textbf{CS327: Compilers} \\ Assignment 3: Syntax Analyzer}
+\author{
+    \textbf{Group Members:} \\
+    Gaurav Budhwani (22110085) \\
+    John Twipraham Debbarma (22110108) \\
+    Harshit (22110095)
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This report documents the implementation of the Syntax Analyzer for the \textbf{OPEX} programming language. The parser uses \textbf{Bison} (Yacc) to define and enforce the Context-Free Grammar (CFG), and integrates with \textbf{Flex} for lexical analysis. It successfully parses 12 diverse test cases ranging from basic graph algorithms to computer vision pipelines.
+
+\section{Context-Free Grammar (CFG)}
+The following non-exhaustive list of grammar rules illustrates the core structure of the syntax:
+
+\begin{verbatim}
+Program     -> PROGRAM ID Declarations MainBlock
+MainBlock   -> MAIN BEGIN Statements END | BEGIN Statements END
+Declarations-> /* empty */ | Declarations Decl
+Decl        -> VarDecl | StructDecl | FuncDecl
+VarDecl     -> VAR ID : Type OptSemi 
+             | AUTO ID := Expr OptSemi
+             | Type ID := Expr OptSemi
+Type        -> INT | FLOAT | BOOL | STRING | VOID | TYPE_CV | ArrayType | ID
+StructDecl  -> STRUCT ID StructMembers ENDSTRUCT OptSemi
+FuncDecl    -> FUNCTION ID ( ParamList ) : Type BEGIN Statements END OptSemi
+Statements  -> /* empty */ | Statements Statement
+Statement   -> AssignStmt | IfStmt | WhileStmt | ForStmt | ForeachStmt 
+             | MatchStmt | IOStmt | ReturnStmt | FuncCallStmt OptSemi
+AssignStmt  -> LValue := Expr OptSemi | LValue += Expr OptSemi | LValue ++ OptSemi
+IOStmt      -> PRINT Expr OptSemi | INPUT LValue OptSemi
+\end{verbatim}
+
+\section{Source Code}
+\subsection{parser.y}
+The Bison specification that defines the OPEX grammar rules.
+\lstinputlisting[language=C, caption=parser.y]{src/parser.y}
+
+\subsection{lexer.l}
+The Flex lexer was modified to return Bison tokens instead of printing them out directly.
+\lstinputlisting[language=C, caption=lexer.l]{src/lexer.l}
+
+\subsection{Makefile}
+The build system compiles both files.
+\lstinputlisting[language=make, caption=Makefile]{Makefile}
+
+\section{Test Suite Coverage}
+All 12 OPEX test files are available in the \texttt{tests/} directory and pass the parser evaluation correctly:
+\begin{itemize}
+    \item \texttt{binary\_search.opx}: Array slicing and control flows.
+    \item \texttt{edge\_detection.opx}: Custom type instantiation (\texttt{KERNEL}) and implicit declarations (\texttt{AUTO}).
+    \item \texttt{sample.opx}: Multi-dimensional arrays and foreach loops.
+    \item \texttt{queue.opx} \& \texttt{stack.opx}: Object-struct definitions and usages.
+    \item \texttt{floyd\_warshall.opx}: Triply-nested loops and matrix accesses.
+    \item ... and six additional algorithmic tests (\texttt{dfs.opx}, \texttt{bst\_inorder.opx}, \texttt{fibonacci.opx}, etc.)
+\end{itemize}
+
+\end{document}
