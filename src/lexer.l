@@ -8,7 +8,7 @@ int line_num = 1;
 /* DEFINITIONS */
 DIGIT       [0-9]
 LETTER      [a-zA-Z]
-ID          {LETTER}({LETTER}|{DIGIT}|_)*
+ID          ({LETTER}|_)({LETTER}|{DIGIT}|_)*
 NUMBER      {DIGIT}+(\.{DIGIT}+)?
 STRING      \"([^\"\\\n]|\\.)*\"
 HEXINT      0[xX][0-9a-fA-F]+
