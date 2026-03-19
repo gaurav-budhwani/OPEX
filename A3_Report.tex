@@ -101,4 +101,54 @@ All 12 OPEX test files are available in the \texttt{tests/} directory and pass t
     \item ... and six additional algorithmic tests (\texttt{dfs.opx}, \texttt{bst\_inorder.opx}, \texttt{fibonacci.opx}, etc.)
 \end{itemize}
 
+\section{Part 1: Construction of LALR(1) Automaton}
+Constructing the LALR(1) (Look-Ahead LR) automaton forms the deterministic core of our Bottom-Up Syntax Analyzer. LALR(1) is significantly more powerful than SLR(1) and substantially smaller than canonical LR(1) because it merges item sets with identical core items but distinct lookaheads.
+\subsection{Automaton Generation and Analysis}
+We utilized GNU Bison to mathematically generate the LALR(1) state machine from our Context-Free Grammar (CFG). Bison compiles the grammar rules into a finite state machine by computing closure and goto functions. When generating the parsing table natively (\texttt{bison -v}), the original grammar revealed critical structural ambiguities:
+\begin{itemize}
+    \item \textbf{81 Shift/Reduce Conflicts}: These emerged primarily from the optional trailing semicolons (\texttt{OptSemi}) and mathematical operator precedence.
+    \item \textbf{173 Reduce/Reduce Conflicts}: These are fatal parsing errors where the automaton cannot definitively choose which non-terminal to reduce a handle to. 
+\end{itemize}
+Specifically, \textbf{State 74} contained 50 Reduce/Reduce conflicts because the \texttt{Expr} branch structurally wrapped and duplicated endpoints like \texttt{FuncCallStmt}, \texttt{TOK\_INT\_LIT}, and \texttt{TOK\_STR}.
+
+\section{Part 2: Conflict Identification and Resolution}
+Understanding and resolving parsing conflicts is critical because an unresolved Reduce/Reduce conflict forces the Bison engine to blindly pick the first defined rule, leading to corrupted Abstract Syntax Trees (AST) during edge-case executions.
+\subsection{Structural Overlap Resolution}
+The original grammar attempted to provide convenient shortcuts by declaring both \texttt{Statement -> Expr OptSemi} and \texttt{Statement -> FuncCallStmt OptSemi}. Because a \texttt{FuncCallStmt} mathematically qualifies as an \texttt{Expr}, the parser reached a state where reading a function call could legally reduce to two totally distinct paths.
+
+\textbf{Alternative Examined}: We could have rewritten the \texttt{FuncCallStmt} to utilize entirely distinct tokens. However, this is bad practice because it breaks the uniform nature of expressions. 
+
+\textbf{Chosen Solution}: We cleanly stripped the redundant grammar wrappers from the higher-level definitions (e.g., removing \texttt{TOK\_INT\_LIT} explicitly from \texttt{ArrayType} because \texttt{Expr} already encapsulates integers). 
+\subsection{Before and After Evaluation}
+\textbf{Before Fix:}
+When passing \texttt{ID() := 5;}, the parser hit State 74, encountered a Reduce/Reduce conflict, guessed the wrong path, and silently corrupted the execution stack, dropping subsequent instructions.
+\textbf{After Fix:}
+By stripping the specific wrapper rules, the parser's table enforces deterministic evaluation natively through \texttt{Expr}, reducing the 173 Reduce/Reduce errors down to precisely 0. The output AST is now strictly mathematically unambiguous.
+
+\section{Part 3: Reverse Derivation Tree Extraction}
+A parser fundamentally tracks derivations. Top-down parsers produce Leftmost derivations, whereas Bottom-up parsers (like our LALR machine) naturally uncover Rightmost derivations in exact reverse order across the reduction stack.
+
+To capture this:
+\begin{enumerate}
+    \item \textbf{What was done}: We implemented a custom C-struct \texttt{ASTNode} tree-allocation framework dynamically built into Bison's semantic actions (\texttt{\$\$ = make\_node(...)}). Every structural reduction dynamically maps its non-terminals into parent-child pointers.
+    \item \textbf{Why it was done}: Storing the tree permits multi-pass compilation. While we could have printed derivations immediately upon reduction, traversing a stored AST allows us to perform semantic checking (Type Validation) in Assignment 4.
+    \item \textbf{Display Mechanism}: Upon hitting the \texttt{Program} root, a post-order recursive traversal named \texttt{printReverseDerivation} structurally dumps the tree. Because evaluating a tree post-order mathematically mirrors bottom-up execution, we accurately output the Reverse Derivation.
+\end{enumerate}
+
+\section{Part 4: Parsing Table Generation}
+Bison naturally computes the LALR(1) grids into a raw \texttt{.output} diagnostic file, which maps States, Terminals, and Non-Terminals.
+\subsection{Extraction Architecture}
+\textbf{Significance}: Visually representing the LALR table is crucial for debugging compiler loop states. We architected a Python mapping module (\texttt{print\_table.py}) that reads Bison's \texttt{parser.output}. It processes the transitions by matching deterministic state tracking parameters against State blocks (identifying \texttt{shift}, \texttt{reduce}, and \texttt{goto} directives).
+\newline
+\textbf{Alternative}: We could have extracted tables via Bison's XML dump parameters. However, natively parsing the output ensures we can inject our matrix structure neatly into Excel-compatible \texttt{.csv} documents for readable, scaled evaluation without bloating the C executable.
+
+\section{Part 5: Advanced Error Diagnostics}
+Standard compilers fail catastrophically upon encountering unexpected tokens, emitting obscure \textit{"Syntax Error"} messages without context.
+\subsection{Feedback Integration}
+\textbf{What was done}: We upgraded the error tracking mechanisms via Lexer-Parser hybridization. By injecting Flex's \texttt{YY\_USER\_ACTION} macro, the Lexer aggressively tracks column and line shifts into Bison's \texttt{yylloc} structure. Simultaneously, we activated Bison's \texttt{\%error-verbose} directive.
+\newline
+\textbf{Why it was done}: When an error occurs (e.g., passing \texttt{VAR valid INT;} without a colon), the engine throws an exact coordinate stack trace: \texttt{Syntax Error at line 3, col 15: syntax error, unexpected TOK\_INT, expecting TOK\_COLON}.
+\newline
+\textbf{Significance}: Providing exact coordinates explicitly shifts the burden of debugging out of the compiler architecture and cleanly into the end-user's scope, massively improving productivity and language usability.
+
 \end{document}

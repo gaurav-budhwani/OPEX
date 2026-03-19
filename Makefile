@@ -5,8 +5,8 @@ BISON = bison
 
 all: parser
 
-parser: src/lex.yy.c src/parser.tab.c
-	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c -o parser
+parser: src/lex.yy.c src/parser.tab.c src/ast.c
+	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c src/ast.c -o parser
 
 src/lex.yy.c: src/lexer.l src/parser.tab.h
 	$(FLEX) -o src/lex.yy.c src/lexer.l
