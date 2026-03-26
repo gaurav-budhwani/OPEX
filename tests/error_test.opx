@@ -1,0 +1,4 @@
+PROGRAM ErrTest
+MAIN BEGIN
+    VAR valid INT ; /* Missing colon to trigger parser syntax error natively */
+END

@@ -1,0 +1,47 @@
+State 31 conflicts: 23 shift/reduce
+State 57 conflicts: 1 shift/reduce, 1 reduce/reduce
+State 66 conflicts: 1 shift/reduce
+State 74 conflicts: 1 shift/reduce, 50 reduce/reduce
+State 76 conflicts: 1 shift/reduce
+State 90 conflicts: 1 shift/reduce
+State 92 conflicts: 1 shift/reduce
+State 94 conflicts: 1 shift/reduce
+State 101 conflicts: 1 shift/reduce, 50 reduce/reduce
+State 102 conflicts: 1 shift/reduce
+State 103 conflicts: 1 shift/reduce
+State 104 conflicts: 1 shift/reduce
+State 117 conflicts: 1 shift/reduce
+State 153 conflicts: 1 shift/reduce
+State 161 conflicts: 1 shift/reduce
+State 193 conflicts: 1 shift/reduce
+State 196 conflicts: 1 shift/reduce
+State 197 conflicts: 1 shift/reduce
+State 198 conflicts: 1 shift/reduce
+--
+State 213 conflicts: 1 shift/reduce
+State 214 conflicts: 1 shift/reduce
+State 215 conflicts: 1 shift/reduce
+State 216 conflicts: 1 shift/reduce
+State 217 conflicts: 1 shift/reduce
+State 223 conflicts: 1 shift/reduce
+State 229 conflicts: 1 shift/reduce
+State 232 conflicts: 1 shift/reduce
+State 298 conflicts: 1 shift/reduce
+State 322 conflicts: 1 shift/reduce
+State 335 conflicts: 18 reduce/reduce
+State 336 conflicts: 1 shift/reduce
+State 337 conflicts: 1 shift/reduce
+State 345 conflicts: 18 reduce/reduce
+State 346 conflicts: 18 reduce/reduce
+State 347 conflicts: 1 shift/reduce
+State 351 conflicts: 18 reduce/reduce
+
+
+Grammar
+
+    0 $accept: Program $end
+
+    1 Program: TOK_PROGRAM TOK_ID Declarations MainBlock
+    2        | TOK_PROGRAM TOK_ID MainBlock
+    3        | TOK_PROGRAM TOK_ID Declarations
+

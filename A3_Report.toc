@@ -2,6 +2,16 @@
 \contentsline {section}{\numberline {2}Context-Free Grammar (CFG)}{2}{section.2}%
 \contentsline {section}{\numberline {3}Source Code}{2}{section.3}%
 \contentsline {subsection}{\numberline {3.1}parser.y}{2}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}lexer.l}{8}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Makefile}{10}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Test Suite Coverage}{11}{section.4}%
+\contentsline {subsection}{\numberline {3.2}lexer.l}{10}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Makefile}{14}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Test Suite Coverage}{15}{section.4}%
+\contentsline {section}{\numberline {5}Part 1: Theoretical Construction of the LALR(1) Automaton}{15}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Automaton Generation and Analysis}{15}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Part 2: Conflict Identification and Resolution}{16}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Structural Overlap Resolution Strategy}{16}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Before and After Evaluation}{16}{subsection.6.2}%
+\contentsline {section}{\numberline {7}Part 3: Reverse Derivation Tree Extraction}{17}{section.7}%
+\contentsline {section}{\numberline {8}Part 4: Parsing Table Generation}{17}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Extraction Architecture}{17}{subsection.8.1}%
+\contentsline {section}{\numberline {9}Part 5: Advanced Error Diagnostics}{18}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Feedback Integration}{18}{subsection.9.1}%
