@@ -6,10 +6,10 @@
 
 extern int yylex();
 extern int yyparse();
-extern int line_num;
+extern int yylineno;
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Syntax Error at line %d: %s\n", line_num, s);
+    fprintf(stderr, "Syntax Error at line %d: %s\n", yylineno, s);
     exit(1);
 }
 %}
