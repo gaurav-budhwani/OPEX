@@ -15,27 +15,19 @@ def generate_parsing_table(output_file):
 
     for line in lines:
         line = line.strip()
-        m = re.match(r'^[Ss]tate (\d+)$', line)
+        m = re.match(r'^State (\d+)$', line)
         if m:
             current_state = int(m.group(1))
             table[current_state] = {}
             in_state = True
             continue
-
+            
         if not in_state:
             continue
-
+            
         if not line or line.startswith('//') or 'shift/reduce' in line or 'reduce/reduce' in line:
             continue
-
-        # Skip grammar item lines (e.g. "19 Type: TOK_ID .")
-        if re.match(r'^\d', line):
-            continue
-
-        # Skip bracketed/suppressed conflict actions (e.g. "[reduce using rule 62 (LValue)]")
-        if line.startswith('['):
-            continue
-
+            
         m = re.match(r'^(\S+)\s+(.+)$', line)
         if m:
             sym, action = m.groups()
@@ -43,9 +35,9 @@ def generate_parsing_table(output_file):
                 continue
             if sym == '$accept' or sym == '$end' or '|' in sym or ':' in sym:
                 continue
-
+                
             table[current_state][sym] = action
-            if re.match(r'^go to state \d+$', action):
+            if 'go to state' in action:
                 non_terminals.add(sym)
             else:
                 if sym != '$default':
