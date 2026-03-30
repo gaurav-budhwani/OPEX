@@ -7,10 +7,9 @@
 extern int yylex();
 extern int yyparse();
 extern int yylineno;
-extern int yycolumn;
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Syntax Error at line %d, col %d: %s\n", yylineno, yycolumn, s);
+    fprintf(stderr, "Syntax Error at line %d, col %d: %s\n", yylineno, s);
     exit(1);
 }
 %}
