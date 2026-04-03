@@ -37,3 +37,6 @@ If the syntax is correct, the parser will output:
 `Syntax Correct`
 
 Otherwise, it will output a granular line-by-line syntax error.
+
+Please check A3_report.pdf for the further details in this directory.
+
