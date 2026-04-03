@@ -18,7 +18,7 @@ The Syntax Analyzer is built using **Bison (Yacc)** and **Flex**. It validates t
 - `Makefile`: Build scripts to automate compilation.
 
 ## How to Build & Test
-Ensure you have `gcc`, `flex`, and `bison` installed.
+Please ensure `gcc`, `flex`, and `bison` are installed.
 
 1.  **Compile the Parser:**
     ```bash
