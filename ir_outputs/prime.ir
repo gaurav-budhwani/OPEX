@@ -1,0 +1,32 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+print      "Enter a number to check:"                      
+input                            n         
+=          TRUE                  isPrime   
+<=         n          1          t1        
+ifFalse    t1                    L1        
+=          FALSE                 isPrime   
+Label                            L1        
+=          2                     i         
+Label                            L2        
+/          n          2          t2        
+<=         i          t2         t3        
+ifFalse    t3                    L3        
+==                    0          t4        
+ifFalse    t4                    L4        
+=          FALSE                 isPrime   
+Label                            L4        
++          i          1          t5        
+=          t5                    i         
+goto                             L2        
+Label                            L3        
+==         isPrime    TRUE       t6        
+ifFalse    t6                    L6        
+print      "{n} is a Prime Number"                      
+goto                             L5        
+Label                            L6        
+print      "{n} is NOT a Prime Number"                      
+Label                            L5        
+Syntax Correct

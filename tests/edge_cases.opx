@@ -1,0 +1,8 @@
+PROGRAM EdgeCasesParser
+MAIN
+BEGIN
+    VAR _privateVar : INT;
+    VAR validID : FLOAT;
+    _privateVar := 5;
+    validID := 1.5;
+END

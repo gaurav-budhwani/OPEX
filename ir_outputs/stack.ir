@@ -1,0 +1,44 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+>=                    9          t1        
+ifFalse    t1                    L2        
+print      "Error: Stack Overflow"                      
+goto                             L1        
+Label                            L2        
++                     1          t2        
+=          t2                              
+=          (null)[(null)]            t3        
+=          val                   t3        
+Label                            L1        
+<                     0          t4        
+ifFalse    t4                    L4        
+print      "Error: Stack Underflow"                      
+minus      1                     t5        
+return     t5                              
+goto                             L3        
+Label                            L4        
+=          (null)[(null)]            t6        
+=          t6                    val       
+-                     1          t7        
+=          t7                              
+return     val                             
+Label                            L3        
+minus      1                     t8        
+=          t8                              
+print      "Pushing 10, 20, 30..."                      
+param      10                              
+call       push       1          t9        
+param      20                              
+call       push       1          t10       
+param      30                              
+call       push       1          t11       
+print      "Popping values..."                      
+call       pop        0          t12       
+print      t12                             
+call       pop        0          t13       
+print      t13                             
+call       pop        0          t14       
+print      t14                             
+Syntax Correct

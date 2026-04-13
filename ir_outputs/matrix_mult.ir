@@ -1,0 +1,80 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+=          0                     i         
+Label                            L1        
+<=         i          2          t1        
+ifFalse    t1                    L2        
+=          0                     j         
+Label                            L3        
+<=         j          2          t2        
+ifFalse    t2                    L4        
+==         i          j          t3        
+ifFalse    t3                    L6        
+=          A[i]                  t4        
+=          t4[j]                 t5        
+=          1                     t5        
+goto                             L5        
+Label                            L6        
+=          A[i]                  t6        
+=          t6[j]                 t7        
+=          0                     t7        
+Label                            L5        
+=          B[i]                  t8        
+=          t8[j]                 t9        
++          i          j          t10       
+=          t10                   t9        
+=          C[i]                  t11       
+=          t11[j]                t12       
+=          0                     t12       
++          j          1          t13       
+=          t13                   j         
+goto                             L3        
+Label                            L4        
++          i          1          t14       
+=          t14                   i         
+goto                             L1        
+Label                            L2        
+print      "Calculating Product..."                      
+=          0                     i         
+Label                            L7        
+<=         i          2          t15       
+ifFalse    t15                   L8        
+=          0                     j         
+Label                            L9        
+<=         j          2          t16       
+ifFalse    t16                   L10       
+=          0                     k         
+Label                            L11       
+<=         k          2          t17       
+ifFalse    t17                   L12       
+=          C[i]                  t18       
+=          t18[j]                t19       
+=          C[i]                  t20       
+=          t20[j]                t21       
++          t21                   t22       
+=          t22                   t19       
++          k          1          t23       
+=          t23                   k         
+goto                             L11       
+Label                            L12       
++          j          1          t24       
+=          t24                   j         
+goto                             L9        
+Label                            L10       
++          i          1          t25       
+=          t25                   i         
+goto                             L7        
+Label                            L8        
+print      "Result Matrix C (Row 0):"                      
+=          C[0]                  t26       
+=          t26[0]                t27       
+print      t27                             
+=          C[0]                  t28       
+=          t28[1]                t29       
+print      t29                             
+=          C[0]                  t30       
+=          t30[2]                t31       
+print      t31                             
+Syntax Correct

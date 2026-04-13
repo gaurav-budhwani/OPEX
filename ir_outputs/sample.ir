@@ -1,0 +1,12 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+print      "Initializing..."                      
+=          5                     val       
++          matrixA    matrixB    t1        
+=          t1                    sumMatrix 
+=          matrixA[(null)]            t2        
+=          t2                    subRegion 
+print      "Matrix Processing Complete"                      
+Syntax Correct

@@ -1,0 +1,52 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+=          0                     low       
+Label                            L1        
+<=         low        9          t1        
+ifFalse    t1                    L2        
+=          data[low]             t2        
+*          low        2          t3        
+=          t3                    t2        
++          low        1          t4        
+=          t4                    low       
+goto                             L1        
+Label                            L2        
+print      "Enter value to search for:"                      
+input                            target    
+=          0                     low       
+=          9                     high      
+=          FALSE                 found     
+Label                            L3        
+<=         low        high       t5        
+ifFalse    t5                    L4        
+/                     2          t6        
+=          t6                    mid       
+=          data[mid]             t7        
+==         t7         target     t8        
+ifFalse    t8                    L6        
+print      "Found at index: {mid}"                      
+=          TRUE                  found     
++          high       1          t9        
+=          t9                    low       
+goto                             L5        
+Label                            L6        
+=          data[mid]             t10       
+<          t10        target     t11       
+ifFalse    t11                   L8        
++          mid        1          t12       
+=          t12                   low       
+goto                             L7        
+Label                            L8        
+-          mid        1          t13       
+=          t13                   high      
+Label                            L7        
+Label                            L5        
+goto                             L3        
+Label                            L4        
+==         found      FALSE      t14       
+ifFalse    t14                   L9        
+print      "Value not found"                      
+Label                            L9        
+Syntax Correct

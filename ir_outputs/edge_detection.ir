@@ -1,0 +1,23 @@
+
+Intermediate Code (Quadruples):
+op         arg1       arg2       result    
+---------------------------------------------
+minus      1                     t1        
+minus      2                     t2        
+minus      1                     t3        
+minus      1                     t4        
+minus      2                     t5        
+minus      1                     t6        
+param      "input.jpg"                      
+call       LOAD       1          t7        
+param      img                             
+call       GRAYSCALE  1          t8        
++          edgesX     edgesY     t9        
+param      50                              
+param      combined                        
+call       THRESHOLD  2          t10       
+param      "edges.png"                      
+param      edgeMap                         
+call       SAVE       2          t11       
+print      "Edge detection complete: {img.width}x{img.height}"                      
+Syntax Correct
