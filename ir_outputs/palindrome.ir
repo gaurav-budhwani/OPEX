@@ -1,3 +1,30 @@
+=== SOURCE CODE ===
+PROGRAM PalindromeCheck
+BEGIN
+    VAR original : INT;
+    VAR reversed : INT;
+    VAR remainder : INT;
+    VAR temp : INT;
+
+    PRINT "Enter an integer:";
+    INPUT original;
+
+    reversed := 0;
+    temp := original;
+
+    WHILE temp > 0 DO
+        remainder := temp % 10;
+        reversed := (reversed * 10) + remainder;
+        temp := temp / 10;
+    ENDWHILE
+
+    IF original == reversed THEN
+        PRINT "{original} is a palindrome.";
+    ELSE
+        PRINT "{original} is NOT a palindrome.";
+    ENDIF
+END
+=== INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
 op         arg1       arg2       result    

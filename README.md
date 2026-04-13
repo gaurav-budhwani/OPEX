@@ -1,6 +1,6 @@
-# Syntax Analyzer
+# Semantic Analyzer & Intermediate Code Generator (Assignment 4)
 
-This branch contains the **Syntax Analyzer (Parser)** for the OPEX programming language, developed for CS327: Compilers.
+This branch natively maps the **Intermediate Code Generator (3AC)** for the OPEX programming language.
 
 ## Team
 - **Gaurav Budhwani** (22110085)
@@ -8,32 +8,23 @@ This branch contains the **Syntax Analyzer (Parser)** for the OPEX programming l
 - **Harshit** (22110095)
 
 ## Overview
-The Syntax Analyzer is built using **Bison (Yacc)** and **Flex**. It validates the syntax of OPEX programs against a defined Context-Free Grammar (CFG), supporting features like structs, matrix indexing, logic, loop controls, and image processing operations.
+The compiler engine has shifted from an explicit LALR(1) Syntax verifier into a pure Syntax Directed Translation (SDT) engine capable of evaluating algorithmic loops, array jumps, and boolean conditionals cleanly into **Three Address Code (TAC) Quadruples**.
 
 ## Project Structure
-- `src/parser.y`: The Bison grammar specification.
-- `src/lexer.l`: The Flex lexer modified to return Bison tokens.
-- `tests/`: 12 diverse `.opx` test files demonstrating language constructs.
-- `A3_Report.tex` / `A3_Report.pdf`: Comprehensive report including the CFG and deliverables.
-- `Makefile`: Build scripts to automate compilation.
+- `src/ir.c` & `src/ir.h`: The Core Post-Order AST mapping matrices dropping the TAC sequences dynamically natively tracking `temp()` and array logic allocations.
+- `src/parser.y` & `src/lexer.l`: The foundational compilation nodes ensuring mathematical integrity before translation kicks into execution bounds.
+- `tests/`: 12 mathematically intense OPEX structures enforcing Turing evaluation. 
+- `ir_outputs/`: The exact rendered `.ir` quadruple sequences exported side-by-side with the OPEX Source Code.
+- `A4_Report.pdf`: The complete comprehensive execution thesis.
 
-## How to Build & Test
-Ensure you have `gcc`, `flex`, and `bison` installed.
+## How to Build & Evaluate the Quadruples
 
-1.  **Compile the Parser:**
+1. **Recompile the Internal Engine**:
     ```bash
-    make
+    make clean && make
     ```
-2.  **Run specific test file:**
+2. **Execute Full 12-Script TAC Conversion**:
     ```bash
-    ./parser < tests/sample.opx
+    make test_ir
     ```
-3.  **Run all test cases:**
-    ```bash
-    make test_all
-    ```
-
-If the syntax is correct, the parser will output:
-`Syntax Correct`
-
-Otherwise, it will output a granular line-by-line syntax error.
+This routine explicitly triggers the 100% compliant export mechanism mathematically matching the exact assignments bounding constraints directly into `/ir_outputs/`.

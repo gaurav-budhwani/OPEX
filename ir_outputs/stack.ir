@@ -1,3 +1,52 @@
+=== SOURCE CODE ===
+PROGRAM StackDemo
+    STRUCT Stack
+        data : ARRAY[10] OF INT;
+        top : INT;
+    ENDSTRUCT
+
+    // Global stack instance
+    VAR s : Stack;
+
+    FUNCTION push(val : INT) : VOID
+    BEGIN
+        IF s.top >= 9 THEN
+            PRINT "Error: Stack Overflow";
+        ELSE
+            s.top := s.top + 1;
+            s.data[s.top] := val;
+        ENDIF
+    END
+
+    FUNCTION pop() : INT
+    BEGIN
+        VAR val : INT;
+        IF s.top < 0 THEN
+            PRINT "Error: Stack Underflow";
+            RETURN -1;
+        ELSE
+            val := s.data[s.top];
+            s.top := s.top - 1;
+            RETURN val;
+        ENDIF
+    END
+
+MAIN
+BEGIN
+    // Initialize Stack
+    s.top := -1;
+
+    PRINT "Pushing 10, 20, 30...";
+    push(10);
+    push(20);
+    push(30);
+
+    PRINT "Popping values...";
+    PRINT pop(); // Should print 30
+    PRINT pop(); // Should print 20
+    PRINT pop(); // Should print 10
+END
+=== INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
 op         arg1       arg2       result    

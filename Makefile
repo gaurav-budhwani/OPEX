@@ -27,7 +27,10 @@ test_ir: parser
 	@mkdir -p ir_outputs
 	@for f in tests/*.opx; do \
 		echo "Generating IR for $$f..."; \
-		./parser < "$$f" > "ir_outputs/$$(basename "$$f" .opx).ir" 2>&1 || true; \
+		echo "=== SOURCE CODE ===" > "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		cat "$$f" >> "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		echo "\n=== INTERMEDIATE CODE ===" >> "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		./parser < "$$f" >> "ir_outputs/$$(basename "$$f" .opx).ir" 2>&1 || true; \
 	done
 
 clean:

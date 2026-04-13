@@ -1,1 +1,8 @@
+=== SOURCE CODE ===
+PROGRAM ErrTest
+MAIN BEGIN
+    VAR valid INT ; /* Missing colon to trigger parser syntax error natively */
+END
+
+=== INTERMEDIATE CODE ===
 Syntax Error at line 3, col 18: syntax error, unexpected TOK_INT, expecting TOK_COLON
