@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.28)  10 APR 2026 12:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.28)  13 APR 2026 17:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -217,7 +217,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count285
 \l__pdf_internal_box=\box52
 )
-No file A4_Report.aux.
+(./A4_Report.aux)
 \openout1 = `A4_Report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
@@ -238,6 +238,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -287,6 +288,7 @@ LaTeX Font Info:    ... okay on input line 18.
 \everyMPtoPDFconversion=\toks22
 )
 Package hyperref Info: Link coloring OFF on input line 18.
+ (./A4_Report.out) (./A4_Report.out)
 \@outlinefile=\write3
 \openout3 = `A4_Report.out'.
 
@@ -294,8 +296,14 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 21.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 21.
-
-No file A4_Report.toc.
+ (./A4_Report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
 \tf@toc=\write4
 \openout4 = `A4_Report.toc'.
 
@@ -327,15 +335,15 @@ Package rerunfilecheck Warning: File `A4_Report.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `A4_Report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  21F3C0A13FB8E57FBF833C2DCBFEFF8A;1159.
+(rerunfilecheck)             Before: 21F3C0A13FB8E57FBF833C2DCBFEFF8A;1159
+(rerunfilecheck)             After:  2A1D8A54A3523E0EE733C86A279F2EEB;1351.
  ) 
 Here is how much of TeX's memory you used:
- 9058 strings out of 473190
- 140153 string characters out of 5715799
- 555521 words of memory out of 5000000
- 32242 multiletter control sequences out of 15000+600000
- 562727 words of font info for 49 fonts, out of 8000000 for 9000
+ 9093 strings out of 473190
+ 140597 string characters out of 5715799
+ 555592 words of memory out of 5000000
+ 32262 multiletter control sequences out of 15000+600000
+ 565165 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,79p,398b,435s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -344,10 +352,10 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></us
 r/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr
 /local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on A4_Report.pdf (3 pages, 77499 bytes).
+Output written on A4_Report.pdf (3 pages, 82379 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 82 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
+ 11 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

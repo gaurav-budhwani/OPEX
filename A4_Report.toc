@@ -3,3 +3,4 @@
 \contentsline {subsection}{\numberline {2.1}SDT Architecture \& AST Traversal}{2}{subsection.2.1}%
 \contentsline {section}{\numberline {3}Part 2: Extended Advanced Constructs}{2}{section.3}%
 \contentsline {section}{\numberline {4}Part 3 \& 4: Output Matrices and Error Diagnostics}{2}{section.4}%
+\contentsline {section}{\numberline {5}Team Roles and Contributions}{3}{section.5}%
