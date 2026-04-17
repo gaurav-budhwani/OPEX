@@ -324,8 +324,6 @@ ArrayInitializer:
 %%
 
 int main(void) {
-    if (yyparse() == 0) {
-        printf("Syntax Correct\n");
-    }
+    yyparse();
     return 0;
 }
