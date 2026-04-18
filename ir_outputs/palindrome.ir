@@ -27,28 +27,28 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-print      "Enter an integer:"                      
-input                            original  
-=          0                     reversed  
-=          original              temp      
-Label                            L1        
->          temp       0          t1        
-ifFalse    t1                    L2        
-%          temp       10         t2        
-=          t2                    remainder 
-+                     remainder  t3        
-=          t3                    reversed  
-/          temp       10         t4        
-=          t4                    temp      
-goto                             L1        
-Label                            L2        
-==         original   reversed   t5        
-ifFalse    t5                    L4        
-print      "{original} is a palindrome."                      
-goto                             L3        
-Label                            L4        
-print      "{original} is NOT a palindrome."                      
-Label                            L3        
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+print        "Enter an integer:"                                
+input                                        original       
+=            0                               reversed       
+=            original                        temp           
+Label                                        L1             
+>            temp            0               t1             
+ifFalse      t1                              L2             
+%            temp            10              t2             
+=            t2                              remainder      
+*            reversed        10              t3             
++            t3              remainder       t4             
+=            t4                              reversed       
+/            temp            10              t5             
+=            t5                              temp           
+goto                                         L1             
+Label                                        L2             
+==           original        reversed        t6             
+ifFalse      t6                              L4             
+print        "{original} is a palindrome."                                
+goto                                         L3             
+Label                                        L4             
+print        "{original} is NOT a palindrome."                                
+Label                                        L3             

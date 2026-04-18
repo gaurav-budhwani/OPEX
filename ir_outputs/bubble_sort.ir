@@ -39,54 +39,52 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-=          5                     n         
-=          arr[0]                t1        
-=          64                    t1        
-=          arr[1]                t2        
-=          34                    t2        
-=          arr[2]                t3        
-=          25                    t3        
-=          arr[3]                t4        
-=          12                    t4        
-=          arr[4]                t5        
-=          22                    t5        
-print      "Sorting array..."                      
-=          0                     i         
-Label                            L1        
--          n          2          t6        
-<=         i          t6         t7        
-ifFalse    t7                    L2        
-=          0                     j         
-Label                            L3        
--          n          i          t8        
--          t8         2          t9        
-<=         j          t9         t10       
-ifFalse    t10                   L4        
-=          arr[j]                t11       
-+          j          1          t12       
-=          arr[t12]              t13       
->          t11        t13        t14       
-ifFalse    t14                   L5        
-=          arr[j]                t15       
-=          t15                   temp      
-=          arr[j]                t16       
-+          j          1          t17       
-=          arr[t17]              t18       
-=          t18                   t16       
-+          j          1          t19       
-=          arr[t19]              t20       
-=          temp                  t20       
-Label                            L5        
-+          j          1          t21       
-=          t21                   j         
-goto                             L3        
-Label                            L4        
-+          i          1          t22       
-=          t22                   i         
-goto                             L1        
-Label                            L2        
-print      "Sorted Array:"                      
-print      val                             
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+=            5                               n              
+=            64                              arr[0]         
+=            34                              arr[1]         
+=            25                              arr[2]         
+=            12                              arr[3]         
+=            22                              arr[4]         
+print        "Sorting array..."                                
+=            0                               i              
+Label                                        L1             
+-            n               2               t1             
+<=           i               t1              t2             
+ifFalse      t2                              L2             
+=            0                               j              
+Label                                        L3             
+-            n               i               t3             
+-            t3              2               t4             
+<=           j               t4              t5             
+ifFalse      t5                              L4             
++            j               1               t6             
+>            arr[j]          arr[t6]         t7             
+ifFalse      t7                              L5             
+=            arr[j]                          temp           
++            j               1               t8             
+=            arr[t8]                         arr[j]         
++            j               1               t9             
+=            temp                            arr[t9]        
+Label                                        L5             
++            j               1               t10            
+=            t10                             j              
+goto                                         L3             
+Label                                        L4             
++            i               1               t11            
+=            t11                             i              
+goto                                         L1             
+Label                                        L2             
+print        "Sorted Array:"                                
+=            0                               t12            
+len          arr                             t13            
+Label                                        L6             
+<            t12             t13             t14            
+ifFalse      t14                             L7             
+=            arr[t12]                        val            
+print        val                                            
++            t12             1               t15            
+=            t15                             t12            
+goto                                         L6             
+Label                                        L7             

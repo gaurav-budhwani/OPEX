@@ -65,59 +65,61 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-==                               t1        
-ifFalse    t1                    L2        
-print      "Error: Queue Full"                      
-goto                             L1        
-Label                            L2        
-=          (null)[(null)]            t2        
-=          val                   t2        
-%                                t3        
-=          t3                              
-+                     1          t4        
-=          t4                              
-Label                            L1        
-==                    0          t5        
-ifFalse    t5                    L4        
-print      "Error: Queue Empty"                      
-minus      1                     t6        
-return     t6                              
-goto                             L3        
-Label                            L4        
-=          (null)[(null)]            t7        
-=          t7                    val       
-%                                t8        
-=          t8                              
--                     1          t9        
-=          t9                              
-return     val                             
-Label                            L3        
-=          0                               
-=          0                               
-=          0                               
-=          5                               
-print      "Enqueueing 1, 2, 3..."                      
-param      1                               
-call       enqueue    1          t10       
-param      2                               
-call       enqueue    1          t11       
-param      3                               
-call       enqueue    1          t12       
-print      "Dequeueing..."                      
-call       dequeue    0          t13       
-print      t13                             
-call       dequeue    0          t14       
-print      t14                             
-print      "Enqueueing 4, 5, 6 (Wrapping around)..."                      
-param      4                               
-call       enqueue    1          t15       
-param      5                               
-call       enqueue    1          t16       
-param      6                               
-call       enqueue    1          t17       
-print      "Current Head Value:"                      
-=          (null)[(null)]            t18       
-print      t18                             
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         enqueue                                        
+==           q.count         q.capacity      t1             
+ifFalse      t1                              L2             
+print        "Error: Queue Full"                                
+goto                                         L1             
+Label                                        L2             
+=            val                             q.data[q.tail] 
++            q.tail          1               t2             
+%            t2              q.capacity      t3             
+=            t3                              q.tail         
++            q.count         1               t4             
+=            t4                              q.count        
+Label                                        L1             
+endfunc      enqueue                                        
+func         dequeue                                        
+==           q.count         0               t5             
+ifFalse      t5                              L4             
+print        "Error: Queue Empty"                                
+minus        1                               t6             
+return       t6                                             
+goto                                         L3             
+Label                                        L4             
+=            q.data[q.head]                  val            
++            q.head          1               t7             
+%            t7              q.capacity      t8             
+=            t8                              q.head         
+-            q.count         1               t9             
+=            t9                              q.count        
+return       val                                            
+Label                                        L3             
+endfunc      dequeue                                        
+=            0                               q.head         
+=            0                               q.tail         
+=            0                               q.count        
+=            5                               q.capacity     
+print        "Enqueueing 1, 2, 3..."                                
+param        1                                              
+call         enqueue         1               t10            
+param        2                                              
+call         enqueue         1               t11            
+param        3                                              
+call         enqueue         1               t12            
+print        "Dequeueing..."                                
+call         dequeue         0               t13            
+print        t13                                            
+call         dequeue         0               t14            
+print        t14                                            
+print        "Enqueueing 4, 5, 6 (Wrapping around)..."                                
+param        4                                              
+call         enqueue         1               t15            
+param        5                                              
+call         enqueue         1               t16            
+param        6                                              
+call         enqueue         1               t17            
+print        "Current Head Value:"                                
+print        q.data[q.head]                                 

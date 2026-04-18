@@ -52,81 +52,55 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-print      "Visiting Node: {u}"                      
-=          visited[u]            t1        
-=          TRUE                  t1        
-=          0                     v         
-Label                            L1        
-<=         v          4          t2        
-ifFalse    t2                    L2        
-=          adj[u]                t3        
-=          t3[v]                 t4        
-==         t4         1          t5        
-=          visited[v]            t6        
-==         t6         FALSE      t7        
-&&         t5         t7         t8        
-ifFalse    t8                    L3        
-param      v                               
-call       dfs        1          t9        
-Label                            L3        
-+          v          1          t10       
-=          t10                   v         
-goto                             L1        
-Label                            L2        
-=          0                     i         
-Label                            L4        
-<=         i          4          t11       
-ifFalse    t11                   L5        
-=          visited[i]            t12       
-=          FALSE                 t12       
-=          0                     j         
-Label                            L6        
-<=         j          4          t13       
-ifFalse    t13                   L7        
-=          adj[i]                t14       
-=          t14[j]                t15       
-=          0                     t15       
-+          j          1          t16       
-=          t16                   j         
-goto                             L6        
-Label                            L7        
-+          i          1          t17       
-=          t17                   i         
-goto                             L4        
-Label                            L5        
-=          adj[0]                t18       
-=          t18[1]                t19       
-=          1                     t19       
-=          adj[1]                t20       
-=          t20[0]                t21       
-=          1                     t21       
-=          adj[0]                t22       
-=          t22[3]                t23       
-=          1                     t23       
-=          adj[3]                t24       
-=          t24[0]                t25       
-=          1                     t25       
-=          adj[1]                t26       
-=          t26[2]                t27       
-=          1                     t27       
-=          adj[2]                t28       
-=          t28[1]                t29       
-=          1                     t29       
-=          adj[1]                t30       
-=          t30[4]                t31       
-=          1                     t31       
-=          adj[4]                t32       
-=          t32[1]                t33       
-=          1                     t33       
-=          adj[3]                t34       
-=          t34[4]                t35       
-=          1                     t35       
-=          adj[4]                t36       
-=          t36[3]                t37       
-=          1                     t37       
-print      "Starting DFS from Node 0:"                      
-param      0                               
-call       dfs        1          t38       
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         dfs                                            
+print        "Visiting Node: {u}"                                
+=            TRUE                            visited[u]     
+=            0                               v              
+Label                                        L1             
+<=           v               4               t1             
+ifFalse      t1                              L2             
+==           adj[u][v]       1               t2             
+==           visited[v]      FALSE           t3             
+&&           t2              t3              t4             
+ifFalse      t4                              L3             
+param        v                                              
+call         dfs             1               t5             
+Label                                        L3             
++            v               1               t6             
+=            t6                              v              
+goto                                         L1             
+Label                                        L2             
+endfunc      dfs                                            
+=            0                               i              
+Label                                        L4             
+<=           i               4               t7             
+ifFalse      t7                              L5             
+=            FALSE                           visited[i]     
+=            0                               j              
+Label                                        L6             
+<=           j               4               t8             
+ifFalse      t8                              L7             
+=            0                               adj[i][j]      
++            j               1               t9             
+=            t9                              j              
+goto                                         L6             
+Label                                        L7             
++            i               1               t10            
+=            t10                             i              
+goto                                         L4             
+Label                                        L5             
+=            1                               adj[0][1]      
+=            1                               adj[1][0]      
+=            1                               adj[0][3]      
+=            1                               adj[3][0]      
+=            1                               adj[1][2]      
+=            1                               adj[2][1]      
+=            1                               adj[1][4]      
+=            1                               adj[4][1]      
+=            1                               adj[3][4]      
+=            1                               adj[4][3]      
+print        "Starting DFS from Node 0:"                                
+param        0                                              
+call         dfs             1               t11            

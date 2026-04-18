@@ -26,34 +26,35 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-<=         n          1          t1        
-ifFalse    t1                    L2        
-return     n                               
-goto                             L1        
-Label                            L2        
--          n          1          t2        
-param      t2                              
-call       fib        1          t3        
--          n          2          t4        
-param      t4                              
-call       fib        1          t5        
-+          t3         t5         t6        
-return     t6                              
-Label                            L1        
-print      "How many terms?"                      
-input                            terms     
-print      "Fibonacci Sequence:"                      
-=          0                     i         
-Label                            L3        
-<=         i          terms      t7        
-ifFalse    t7                    L4        
-param      i                               
-call       fib        1          t8        
-print      t8                              
-+          i          1          t9        
-=          t9                    i         
-goto                             L3        
-Label                            L4        
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         fib                                            
+<=           n               1               t1             
+ifFalse      t1                              L2             
+return       n                                              
+goto                                         L1             
+Label                                        L2             
+-            n               1               t2             
+param        t2                                             
+call         fib             1               t3             
+-            n               2               t4             
+param        t4                                             
+call         fib             1               t5             
++            t3              t5              t6             
+return       t6                                             
+Label                                        L1             
+endfunc      fib                                            
+print        "How many terms?"                                
+input                                        terms          
+print        "Fibonacci Sequence:"                                
+=            0                               i              
+Label                                        L3             
+<=           i               terms           t7             
+ifFalse      t7                              L4             
+param        i                                              
+call         fib             1               t8             
+print        t8                                             
++            i               1               t9             
+=            t9                              i              
+goto                                         L3             
+Label                                        L4             

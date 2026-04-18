@@ -28,26 +28,27 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-==         b          0          t1        
-ifFalse    t1                    L2        
-return     a                               
-goto                             L1        
-Label                            L2        
-%          a          b          t2        
-param      t2                              
-param      b                               
-call       gcd        2          t3        
-return     t3                              
-Label                            L1        
-print      "Enter first number:"                      
-input                            num1      
-print      "Enter second number:"                      
-input                            num2      
-param      num2                            
-param      num1                            
-call       gcd        2          t4        
-=          t4                    result    
-print      "GCD of {num1} and {num2} is {result}"                      
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         gcd                                            
+==           b               0               t1             
+ifFalse      t1                              L2             
+return       a                                              
+goto                                         L1             
+Label                                        L2             
+%            a               b               t2             
+param        t2                                             
+param        b                                              
+call         gcd             2               t3             
+return       t3                                             
+Label                                        L1             
+endfunc      gcd                                            
+print        "Enter first number:"                                
+input                                        num1           
+print        "Enter second number:"                                
+input                                        num2           
+param        num2                                           
+param        num1                                           
+call         gcd             2               t4             
+=            t4                              result         
+print        "GCD of {num1} and {num2} is {result}"                                

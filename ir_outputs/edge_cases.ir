@@ -11,8 +11,7 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-=          5                     _privateVar
-=          1.5                   validID   
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+=            5                               _privateVar    
+=            1.5                             validID        

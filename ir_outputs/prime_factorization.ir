@@ -35,37 +35,39 @@ END
 === INTERMEDIATE CODE ===
 
 Intermediate Code (Quadruples):
-op         arg1       arg2       result    
----------------------------------------------
-print      "Enter a positive integer:"                      
-input                            n         
-print      "Prime factors of {n}:"                      
-Label                            L1        
-==                    0          t1        
-ifFalse    t1                    L2        
-print      2                               
-/          n          2          t2        
-=          t2                    n         
-goto                             L1        
-Label                            L2        
-=          3                     d         
-Label                            L3        
-<=                    n          t3        
-ifFalse    t3                    L4        
-Label                            L5        
-==                    0          t4        
-ifFalse    t4                    L6        
-print      d                               
-/          n          d          t5        
-=          t5                    n         
-goto                             L5        
-Label                            L6        
-+          d          2          t6        
-=          t6                    d         
-goto                             L3        
-Label                            L4        
->          n          2          t7        
-ifFalse    t7                    L7        
-print      n                               
-Label                            L7        
-Syntax Correct
+op           arg1            arg2            result         
+-----------------------------------------------------------
+print        "Enter a positive integer:"                                
+input                                        n              
+print        "Prime factors of {n}:"                                
+Label                                        L1             
+%            n               2               t1             
+==           t1              0               t2             
+ifFalse      t2                              L2             
+print        2                                              
+/            n               2               t3             
+=            t3                              n              
+goto                                         L1             
+Label                                        L2             
+=            3                               d              
+Label                                        L3             
+*            d               d               t4             
+<=           t4              n               t5             
+ifFalse      t5                              L4             
+Label                                        L5             
+%            n               d               t6             
+==           t6              0               t7             
+ifFalse      t7                              L6             
+print        d                                              
+/            n               d               t8             
+=            t8                              n              
+goto                                         L5             
+Label                                        L6             
++            d               2               t9             
+=            t9                              d              
+goto                                         L3             
+Label                                        L4             
+>            n               2               t10            
+ifFalse      t10                             L7             
+print        n                                              
+Label                                        L7             
