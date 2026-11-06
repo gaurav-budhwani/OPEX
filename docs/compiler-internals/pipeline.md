@@ -8,21 +8,31 @@ The OPEX compiler is built using a classical multi-pass architecture, engineered
 
 ```mermaid
 flowchart TD
-    Src["Source Code (.opx)"] --> Lexer["Lexical Analyzer (Flex)"]
-    Lexer --> Tokens["Token Stream"]
-    Tokens --> Parser["Syntax Analyzer (Bison)"]
-    Parser --> AST["Abstract Syntax Tree (AST)"]
+    subgraph FrontEnd ["Front-End Phase"]
+        Src["Source Code (.opx)"] --> Lexer["Lexical Analyzer (Flex)"]
+        Lexer --> Tokens["Token Stream"]
+        Tokens --> Parser["Syntax Analyzer (Bison)"]
+        Parser --> AST["Abstract Syntax Tree (AST)"]
+    end
     
-    AST --> Semantic["Semantic Analyzer & Type Checker"]
+    subgraph MiddleEnd ["Middle-End Phase"]
+        AST --> Semantic["Semantic Analyzer & Symbol Table"]
+        Semantic -->|"Phase 1: IR Generation"| SDT["Syntax Directed Translation"]
+        SDT --> IR["Three-Address Code (3AC Quadruples)"]
+    end
     
-    Semantic -->|"Phase 1: IR Generation"| SDT["Syntax Directed Translation"]
-    SDT --> IR["Three-Address Code (3AC Quadruples)"]
-    
-    Semantic -->|"Phase 2: Code Generation"| Lowering["C99 Low-Level Code Generator"]
-    Lowering --> CSource["Intermediate C Source (.c)"]
-    CSource --> Runtime["OPEX Runtime (runtime.h)"]
-    Runtime --> HostCC["Host C Compiler (GCC / Clang)"]
-    HostCC --> Binary["Native Machine Binary (Mach-O / ELF)"]
+    subgraph BackEnd ["Back-End Phase"]
+        Semantic -->|"Phase 2: Code Generation"| Lowering["C99 Low-Level Code Generator"]
+        Lowering --> CSource["Intermediate C Source (.c)"]
+        CSource --> Runtime["OPEX Runtime (runtime.h)"]
+        Runtime --> HostCC["Host C Compiler (GCC / Clang)"]
+        HostCC --> Binary["Native Machine Binary (Mach-O / ELF)"]
+    end
+
+    classDef stage fill:#ffffff,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
+    classDef sub fill:#fcfbfe,stroke:#ddd6fe,stroke-width:1px,color:#6d28d9;
+    class Src,Lexer,Tokens,Parser,AST,Semantic,SDT,IR,Lowering,CSource,Runtime,HostCC,Binary stage;
+    class FrontEnd,MiddleEnd,BackEnd sub;
 ```
 
 ---
