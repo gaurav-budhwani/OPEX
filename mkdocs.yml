@@ -8,37 +8,56 @@ repo_name: gaurav-budhwani/OPEX
 theme:
   name: material
   language: en
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
-    # Palette toggle for light mode
-    - scheme: default
-      primary: indigo
-      accent: deep purple
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
+    # Dark mode (Primary default for modern dev aesthetic)
     - scheme: slate
-      primary: indigo
-      accent: deep purple
+      primary: custom
+      accent: indigo
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-night
         name: Switch to light mode
+    # Light mode
+    - scheme: default
+      primary: custom
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
   features:
     - navigation.instant
+    - navigation.instant.progress
     - navigation.tracking
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
+    - navigation.path
     - navigation.top
+    - navigation.footer
+    - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
     - content.code.annotate
+    - content.tooltips
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -49,9 +68,22 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.keys
   - pymdownx.mark
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - attr_list
+  - md_in_html
   - tables
   - def_list
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/gaurav-budhwani/OPEX
+      name: GitHub Repository
+    - icon: fontawesome/solid/globe
+      link: https://gaurav-budhwani.github.io/
+      name: Gaurav Budhwani Portfolio
 
 nav:
   - Overview: index.md
@@ -79,4 +111,3 @@ nav:
       - Recursive Algorithms: examples/recursion.md
       - Data Structures: examples/data-structures.md
   - Academic Reports: reports/reports.md
-
