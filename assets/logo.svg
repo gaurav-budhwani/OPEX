@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Minimalist High-Tech Monogram (Cobalt & Graphite) -->
+  <rect x="4" y="4" width="92" height="92" rx="16" fill="#0F172A"/>
+  <!-- Matrix Bracket [ -->
+  <path d="M30,28 L24,28 L24,72 L30,72" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Matrix Bracket ] -->
+  <path d="M70,28 L76,28 L76,72 L70,72" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- Central Kernel Core -->
+  <circle cx="50" cy="50" r="13" fill="none" stroke="#38BDF8" stroke-width="4"/>
+  <circle cx="50" cy="50" r="4.5" fill="#2563EB"/>
+</svg>
