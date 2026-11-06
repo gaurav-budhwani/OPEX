@@ -5,18 +5,18 @@ hide:
 
 <div class="hero-box">
   <div class="hero-tags">
-    <span class="pill-purple">CS327 Compilers</span>
+    <span class="pill-cobalt">CS327 Compilers</span>
     <span class="pill-subtle">C99 Backend</span>
     <span class="pill-subtle">Flex & Bison</span>
     <span class="pill-subtle">3AC Quadruples</span>
     <span class="pill-subtle">Computer Vision</span>
   </div>
-  <h1 class="hero-headline">OPEX Programming Language</h1>
+  <h1 class="hero-headline">OPEX</h1>
   <p class="hero-desc">
     Optimized Processing Engine for eXecution. A statically-typed domain-specific compiled language bridging algorithmic computing with first-class computer vision tensors, spatial convolution, and bare-metal native execution.
   </p>
   <div class="hero-buttons">
-    <a href="getting-started/installation/" class="btn-purple">
+    <a href="getting-started/installation/" class="btn-cobalt">
       Documentation <span>&rarr;</span>
     </a>
     <a href="compiler-internals/pipeline/" class="btn-outline">
@@ -149,8 +149,8 @@ flowchart TD
         H --> I["Native Binary Executable (Mach-O / ELF)"]
     end
 
-    classDef stage fill:#ffffff,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
-    classDef sub fill:#fcfbfe,stroke:#ddd6fe,stroke-width:1px,color:#6d28d9;
+    classDef stage fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
+    classDef sub fill:#f8fafc,stroke:#cbd5e1,stroke-width:1px,color:#1e293b;
     class A,B,C,D,E,F,G,H,I stage;
     class Frontend,Middle,Backend sub;
 ```
@@ -187,15 +187,3 @@ flowchart TD
     # Execute interactive benchmark programs
     make test_run
     ```
-
----
-
-## Project Information
-
-Developed for **CS327: Compilers** at the **Indian Institute of Technology Gandhinagar (IITGN)** under the guidance of **Prof. Shouvick Mondal**.
-
-| Contributor | Roll Number | Focus Area |
-| :--- | :--- | :--- |
-| **Gaurav Budhwani** | `22110085` | Compiler Architecture, LALR(1) Grammar, Semantic Analysis, C99 Codegen, Documentation |
-| **John Twipraham Debbarma** | `22110108` | Lexical Analysis (Flex), Intermediate Code Generation (3AC), Test Suite Curation |
-| **Harshit** | `22110095` | Computer Vision Built-ins, Matrix Arithmetic & Convolution Kernels |

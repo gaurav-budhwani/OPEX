@@ -29,8 +29,8 @@ flowchart TD
         HostCC --> Binary["Native Machine Binary (Mach-O / ELF)"]
     end
 
-    classDef stage fill:#ffffff,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
-    classDef sub fill:#fcfbfe,stroke:#ddd6fe,stroke-width:1px,color:#6d28d9;
+    classDef stage fill:#ffffff,stroke:#2563eb,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
+    classDef sub fill:#f8fafc,stroke:#cbd5e1,stroke-width:1px,color:#1e293b;
     class Src,Lexer,Tokens,Parser,AST,Semantic,SDT,IR,Lowering,CSource,Runtime,HostCC,Binary stage;
     class FrontEnd,MiddleEnd,BackEnd sub;
 ```

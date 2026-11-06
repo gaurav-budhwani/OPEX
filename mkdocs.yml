@@ -1,4 +1,4 @@
-site_name: OPEX Language & Compiler
+site_name: OPEX
 site_description: Documentation for OPEX (Optimized Processing Engine for eXecution), a domain-specific compiled language for algorithms and computer vision.
 site_author: Gaurav Budhwani, John Twipraham Debbarma, Harshit
 site_url: https://gaurav-budhwani.github.io/OPEX/
@@ -14,13 +14,11 @@ theme:
   palette:
     - scheme: default
       primary: white
-      accent: deep purple
+      accent: blue
   features:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    - navigation.sections
-    - navigation.expand
     - navigation.path
     - navigation.top
     - navigation.footer
@@ -59,9 +57,6 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.keys
   - pymdownx.mark
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - attr_list
   - md_in_html
   - tables
