@@ -1,3 +1,7 @@
+---
+icon: material/transit-connection-variant
+---
+
 # Control Flow
 
 OPEX provides modern, expressive constructs for branching and looping.

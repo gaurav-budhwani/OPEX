@@ -64,47 +64,47 @@ html, body, .md-container, .md-main, .md-content {
 /* Restrained, Compact Typography */
 .md-typeset {
   font-family: var(--font-helvetica) !important;
-  font-size: 0.84rem !important;
-  line-height: 1.6 !important;
+  font-size: 0.78rem !important;
+  line-height: 1.55 !important;
   color: var(--opex-text-muted) !important;
 }
 
 .md-typeset h1 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.4rem !important;
+  font-size: 1.22rem !important;
   font-weight: 700 !important;
   letter-spacing: -0.02em !important;
   color: var(--opex-text-main) !important;
-  margin-top: 0.75rem !important;
-  margin-bottom: 0.75rem !important;
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.6rem !important;
   line-height: 1.25 !important;
 }
 
 .md-typeset h2 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.12rem !important;
+  font-size: 1.02rem !important;
   font-weight: 700 !important;
   letter-spacing: -0.015em !important;
   color: var(--opex-text-main) !important;
-  margin-top: 1.4rem !important;
-  margin-bottom: 0.5rem !important;
-  padding-bottom: 0.3rem !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.4rem !important;
+  padding-bottom: 0.25rem !important;
   border-bottom: 1px solid var(--opex-border) !important;
 }
 
 .md-typeset h3 {
   font-family: var(--font-helvetica) !important;
-  font-size: 0.92rem !important;
+  font-size: 0.85rem !important;
   font-weight: 600 !important;
   letter-spacing: -0.01em !important;
   color: var(--opex-text-main) !important;
-  margin-top: 1.1rem !important;
-  margin-bottom: 0.35rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.3rem !important;
 }
 
 .md-typeset p, .md-typeset li {
-  font-size: 0.84rem !important;
-  line-height: 1.6 !important;
+  font-size: 0.78rem !important;
+  line-height: 1.55 !important;
   color: #334155 !important;
 }
 
@@ -207,13 +207,32 @@ html, body, .md-container, .md-main, .md-content {
 
 .md-nav__link {
   font-family: var(--font-helvetica) !important;
-  font-size: 0.8rem !important;
+  font-size: 0.76rem !important;
   line-height: 1.4 !important;
   color: var(--opex-text-muted) !important;
-  padding: 5px 10px !important;
+  padding: 4px 8px !important;
   border-radius: 6px;
   border-left: 2px solid transparent;
   transition: all 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.md-nav__link svg {
+  width: 14px !important;
+  height: 14px !important;
+  margin-right: 8px !important;
+  fill: currentColor !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  opacity: 0.75;
+  transition: opacity 0.15s ease, fill 0.15s ease;
+}
+
+.md-nav__link:hover svg {
+  opacity: 1;
+  fill: var(--opex-blue-primary) !important;
 }
 
 .md-nav__link:hover {
@@ -228,6 +247,11 @@ html, body, .md-container, .md-main, .md-content {
   font-weight: 700 !important;
   background-color: var(--opex-blue-light) !important;
   border-left-color: var(--opex-blue-primary) !important;
+}
+
+.md-nav__link--active svg {
+  opacity: 1;
+  fill: var(--opex-blue-primary) !important;
 }
 
 .md-header__button.md-logo img,
@@ -245,8 +269,8 @@ html, body, .md-container, .md-main, .md-content {
   background-color: var(--opex-bg-subtle);
   border: 1px solid var(--opex-border);
   border-radius: 8px;
-  padding: 1.75rem 1.5rem;
-  margin-bottom: 1.75rem;
+  padding: 1.5rem 1.25rem;
+  margin-bottom: 1.5rem;
   background-image: 
     linear-gradient(to right, rgba(37, 99, 235, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
@@ -275,7 +299,7 @@ html, body, .md-container, .md-main, .md-content {
 }
 
 .hero-mascot img {
-  width: 135px;
+  width: 110px;
   height: auto;
   border-radius: 8px;
   filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.12));
@@ -300,19 +324,19 @@ html, body, .md-container, .md-main, .md-content {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
 }
 
 .pill-cobalt {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   background-color: var(--opex-blue-primary);
   color: #ffffff !important;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 9999px;
   text-decoration: none !important;
   transition: transform 0.15s ease;
@@ -325,52 +349,52 @@ html, body, .md-container, .md-main, .md-content {
 .pill-subtle {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background-color: var(--opex-blue-light);
   color: var(--opex-blue-pill-text) !important;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 9999px;
   border: 1px solid var(--opex-blue-border);
 }
 
 .hero-headline {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.65rem !important;
+  font-size: 1.35rem !important;
   font-weight: 700 !important;
   letter-spacing: -0.025em !important;
   line-height: 1.2 !important;
   color: var(--opex-text-main) !important;
-  margin: 0 0 0.5rem 0 !important;
+  margin: 0 0 0.4rem 0 !important;
 }
 
 .hero-desc {
   font-family: var(--font-helvetica) !important;
-  font-size: 0.88rem !important;
-  line-height: 1.55 !important;
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
   color: var(--opex-text-muted) !important;
-  max-width: 680px;
-  margin: 0 0 1.25rem 0 !important;
+  max-width: 650px;
+  margin: 0 0 1rem 0 !important;
 }
 
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn-cobalt {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background-color: var(--opex-blue-primary);
   color: #ffffff !important;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -382,20 +406,20 @@ html, body, .md-container, .md-main, .md-content {
 .btn-cobalt:hover {
   background-color: var(--opex-blue-hover);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
   color: #ffffff !important;
 }
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background-color: var(--opex-white);
   color: var(--opex-text-main) !important;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;

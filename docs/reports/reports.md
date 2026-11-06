@@ -1,6 +1,10 @@
+---
+icon: material/file-document-outline
+---
+
 # Academic Course Reports & Deliverables
 
-The development of the OPEX compiler was structured across 4 rigorous academic assignment milestones for **CS327: Compilers** at IIT Gandhinagar under **Prof. Shouvick Mondal**.
+The development of the OPEX compiler was structured across 4 rigorous technical design milestones under **Prof. Shouvick Mondal**.
 
 ---
 

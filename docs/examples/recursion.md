@@ -1,3 +1,7 @@
+---
+icon: material/repeat
+---
+
 # Recursive Algorithms
 
 OPEX fully supports recursive subroutines with stack frame management.

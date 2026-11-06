@@ -1,3 +1,7 @@
+---
+icon: material/image-outline
+---
+
 # Computer Vision Types
 
 A core innovation in OPEX is its native, first-class support for computer vision data structures.

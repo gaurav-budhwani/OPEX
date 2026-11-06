@@ -1,3 +1,7 @@
+---
+icon: material/code-tags
+---
+
 # Hello World in OPEX
 
 Every OPEX source file uses the `.opx` extension and follows a clear program structure.

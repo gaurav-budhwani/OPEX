@@ -1,3 +1,7 @@
+---
+icon: material/camera-iris
+---
+
 # Built-in Computer Vision Operations
 
 OPEX includes a set of native built-in operations for image processing and transformation.

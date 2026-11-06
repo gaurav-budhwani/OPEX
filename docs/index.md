@@ -1,4 +1,5 @@
 ---
+icon: material/home
 hide:
   - feedback
 ---
@@ -7,7 +8,7 @@ hide:
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-tags">
-        <span class="pill-cobalt">CS327 Compilers</span>
+        <span class="pill-cobalt">Optimizing Compiler</span>
         <span class="pill-subtle">C99 Backend</span>
         <span class="pill-subtle">Flex & Bison</span>
         <span class="pill-subtle">3AC Quadruples</span>

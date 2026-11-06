@@ -1,3 +1,7 @@
+---
+icon: material/variable
+---
+
 # Types & Variables
 
 OPEX is a statically-typed language with compile-time type checking and support for implicit type inference.

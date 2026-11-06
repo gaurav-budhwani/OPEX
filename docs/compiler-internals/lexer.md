@@ -1,3 +1,7 @@
+---
+icon: material/flash-outline
+---
+
 # Lexical Analysis (Flex)
 
 The Lexical Analyzer is the first phase of the OPEX compiler. It transforms an unformatted stream of source characters into a structured sequence of atomic tokens.

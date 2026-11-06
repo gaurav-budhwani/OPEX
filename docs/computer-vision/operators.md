@@ -1,3 +1,7 @@
+---
+icon: material/matrix
+---
+
 # Convolution & Pipeline Operators
 
 OPEX introduces dedicated syntax operators for computer vision workflows.

@@ -1,3 +1,7 @@
+---
+icon: material/function
+---
+
 # Functions & Structs
 
 OPEX supports modular program architecture through functions, recursion, and user-defined product types (`STRUCT`).

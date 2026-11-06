@@ -1,3 +1,7 @@
+---
+icon: material/image-filter-black-white
+---
+
 # Edge Detection Pipeline
 
 This example demonstrates the complete computer vision capability of OPEX by computing horizontal and vertical image gradients using Sobel operators, combining them, and applying threshold segmentation.

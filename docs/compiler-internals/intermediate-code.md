@@ -1,3 +1,7 @@
+---
+icon: material/code-greater-than
+---
+
 # Intermediate Representation (3AC)
 
 Before target code generation, the compiler translates high-level AST trees into **Three-Address Code (3AC) Quadruples**.

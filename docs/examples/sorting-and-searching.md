@@ -1,3 +1,7 @@
+---
+icon: material/sort-alphabetical-ascending
+---
+
 # Sorting & Searching
 
 Algorithmic implementations in OPEX demonstrating array manipulations, nested loops, and binary search.

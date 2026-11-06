@@ -1,3 +1,7 @@
+---
+icon: material/cpu-64-bit
+---
+
 # Native Code Generation
 
 The final compiler pass lowers the AST into standard ISO C99, linking against the OPEX runtime to generate native machine binaries.

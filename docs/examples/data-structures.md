@@ -1,3 +1,7 @@
+---
+icon: material/format-list-bulleted
+---
+
 # Data Structures
 
 Implementations of classical computer science data structures using OPEX `STRUCT` compositions and functions.

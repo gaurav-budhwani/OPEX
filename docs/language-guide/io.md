@@ -1,3 +1,7 @@
+---
+icon: material/console
+---
+
 # Input & Output
 
 OPEX provides clean, high-level primitives for standard I/O and dynamic string interpolation.

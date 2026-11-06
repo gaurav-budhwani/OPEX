@@ -1,3 +1,7 @@
+---
+icon: material/source-branch
+---
+
 # Compiler Architecture & Pipeline
 
 The OPEX compiler is built using a classical multi-pass architecture, engineered for correctness, clean abstractions, and native machine execution.

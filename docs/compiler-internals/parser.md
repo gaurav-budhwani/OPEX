@@ -1,3 +1,7 @@
+---
+icon: material/code-braces
+---
+
 # Syntax & LALR(1) Parsing
 
 The Syntax Analyzer enforces the formal Context-Free Grammar (CFG) of OPEX using GNU Bison (Yacc) to construct an LALR(1) finite state automaton.

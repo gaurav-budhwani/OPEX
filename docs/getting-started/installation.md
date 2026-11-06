@@ -1,3 +1,7 @@
+---
+icon: material/rocket-launch
+---
+
 # Installation & Setup
 
 Get started with the OPEX language and compiler in minutes.

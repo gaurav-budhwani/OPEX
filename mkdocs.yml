@@ -72,7 +72,7 @@ extra:
       name: Gaurav Budhwani Portfolio
 
 nav:
-  - Overview: index.md
+  - Home: index.md
   - Getting Started:
       - Installation & Build: getting-started/installation.md
       - Hello World: getting-started/hello-world.md
