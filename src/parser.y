@@ -1,15 +1,19 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ast.h"
-
+#include "ir.h"
 
 extern int yylex();
 extern int yyparse();
 extern int yylineno;
+extern int yycolumn;
+
+ASTNode* root = NULL;
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Syntax Error at line %d, col %d: %s\n", yylineno, s);
+    fprintf(stderr, "Syntax Error at line %d, col %d: %s\n", yylineno, yycolumn, s);
     exit(1);
 }
 %}
@@ -93,9 +97,9 @@ void yyerror(const char *s) {
 %%
 
 Program:
-    TOK_PROGRAM TOK_ID Declarations MainBlock { $$ = make_node("Program", NULL, 4, $1, $2, $3, $4); printReverseDerivation($$); }
-    | TOK_PROGRAM TOK_ID MainBlock { $$ = make_node("Program", NULL, 3, $1, $2, $3); printReverseDerivation($$); }
-    | TOK_PROGRAM TOK_ID Declarations { $$ = make_node("Program", NULL, 3, $1, $2, $3); printReverseDerivation($$); }
+    TOK_PROGRAM TOK_ID Declarations MainBlock { $$ = make_node("Program", NULL, 4, $1, $2, $3, $4); root = $$; }
+    | TOK_PROGRAM TOK_ID MainBlock { $$ = make_node("Program", NULL, 3, $1, $2, $3); root = $$; }
+    | TOK_PROGRAM TOK_ID Declarations { $$ = make_node("Program", NULL, 3, $1, $2, $3); root = $$; }
     ;
 
 Declarations:
@@ -321,9 +325,18 @@ ArrayInitializer:
 
 %%
 
-int main(void) {
-    if (yyparse() == 0) {
-        printf("Syntax Correct\n");
+int main(int argc, char* argv[]) {
+    if (yyparse() == 0 && root != NULL) {
+        if (argc > 1 && strcmp(argv[1], "--derivations") == 0) {
+            printReverseDerivation(root);
+            printf("Syntax Correct\n");
+        } else if (argc > 1 && strcmp(argv[1], "--parse-only") == 0) {
+            printf("Syntax Correct\n");
+        } else {
+            init_ir();
+            generateIR(root);
+            printQuads();
+        }
     }
     return 0;
 }

@@ -41,6 +41,42 @@ Contains the Lexical Analyzer (Scanner). Utilizes **Flex** to tokenize OPEX sour
 ### [`parser` Branch](https://github.com/gaurav-budhwani/OPEX/tree/parser)
 Contains the Syntax Analyzer. Utilizes **Bison (Yacc)** to evaluate the stream of tokens against the strict Context-Free Grammar of OPEX. Will catch syntax violations, bracket mismatches, and incorrect statement structuring. Includes comprehensive `.opx` integration tests.
 
+### [`semantic` Branch](https://github.com/gaurav-budhwani/OPEX/tree/semantic)
+Contains the Semantic Analyzer and Intermediate Code Generator. Translates the Abstract Syntax Tree (AST) via Syntax-Directed Translation (SDT) into Three-Address Code (3AC) quadruples (`op, arg1, arg2, result`) handling temporary registers, jumps, function calls, and loop controls.
+
+---
+
+## Build & Usage
+
+Ensure `gcc`, `flex`, and `bison` are installed.
+
+1. **Compile the Compiler:**
+   ```bash
+   make
+   ```
+
+2. **Generate Intermediate Code (3AC Quadruples):**
+   ```bash
+   ./parser < tests/sample.opx
+   # Or generate all IR outputs:
+   make test_ir
+   ```
+
+3. **Run Syntax & Parse Tests:**
+   ```bash
+   make test_all
+   ```
+
+4. **View Derivations (Assignment 3 Mode):**
+   ```bash
+   ./parser --derivations < tests/sample.opx
+   ```
+
+5. **Generate LALR(1) Parsing Table CSV:**
+   ```bash
+   python3 print_table.py > table.csv
+   ```
+
 ---
 
 ## Contributors (CS327)

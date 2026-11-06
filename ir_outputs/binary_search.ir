@@ -1,0 +1,95 @@
+=== SOURCE CODE ===
+PROGRAM BinarySearch
+BEGIN
+    // Initialize a sorted array
+    VAR data : ARRAY[10] OF INT;
+    VAR target : INT;
+    VAR low : INT;
+    VAR high : INT;
+    VAR mid : INT;
+    VAR found : BOOL;
+    
+    // Fill array with sorted values
+    // data = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
+    FOR low := 0 TO 9 DO
+        data[low] := low * 2;
+    ENDFOR
+
+    PRINT "Enter value to search for:";
+    INPUT target;
+
+    low := 0;
+    high := 9;
+    found := FALSE;
+
+    WHILE low <= high DO
+        mid := (low + high) / 2;
+        
+        IF data[mid] == target THEN
+            PRINT "Found at index: {mid}";
+            found := TRUE;
+            // Break loop logic (simulated break)
+            low := high + 1; 
+        ELSE
+            IF data[mid] < target THEN
+                low := mid + 1;
+            ELSE
+                high := mid - 1;
+            ENDIF
+        ENDIF
+    ENDWHILE
+
+    IF found == FALSE THEN
+        PRINT "Value not found";
+    ENDIF
+END
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+=            0                               low            
+Label                                        L1             
+<=           low             9               t1             
+ifFalse      t1                              L2             
+*            low             2               t2             
+=            t2                              data[low]      
++            low             1               t3             
+=            t3                              low            
+goto                                         L1             
+Label                                        L2             
+print        "Enter value to search for:"                                
+input                                        target         
+=            0                               low            
+=            9                               high           
+=            FALSE                           found          
+Label                                        L3             
+<=           low             high            t4             
+ifFalse      t4                              L4             
++            low             high            t5             
+/            t5              2               t6             
+=            t6                              mid            
+==           data[mid]       target          t7             
+ifFalse      t7                              L6             
+print        "Found at index: {mid}"                                
+=            TRUE                            found          
++            high            1               t8             
+=            t8                              low            
+goto                                         L5             
+Label                                        L6             
+<            data[mid]       target          t9             
+ifFalse      t9                              L8             
++            mid             1               t10            
+=            t10                             low            
+goto                                         L7             
+Label                                        L8             
+-            mid             1               t11            
+=            t11                             high           
+Label                                        L7             
+Label                                        L5             
+goto                                         L3             
+Label                                        L4             
+==           found           FALSE           t12            
+ifFalse      t12                             L9             
+print        "Value not found"                                
+Label                                        L9             

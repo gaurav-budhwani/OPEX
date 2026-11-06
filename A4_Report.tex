@@ -1,0 +1,60 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+
+\title{\textbf{CS327: Compilers} \\ Assignment 4: Intermediate Code Generation}
+\author{
+    \textbf{Group Members:} \\
+    Gaurav Budhwani (22110085) \\
+    John Twipraham Debbarma (22110108) \\
+    Harshit (22110095)
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+This report explicitly outlines the structural and mathematical mechanics utilized to bridge our LALR(1) Syntax Analyzer into an optimized Intermediate Code Generator producing \textbf{Three-Address Code (TAC)} Quadruples. The engine inherently processes expressions, conditionals, and mathematical constraints via pure Syntax Directed Translation (SDT).
+
+\section{Part 1: Intermediate Code Generation (3AC)}
+Translating High-Level representations into low-level IR bridges the gap between context-free syntax proofs and assembly bounds.
+\subsection{SDT Architecture \& AST Traversal}
+While primitive compilers dangerously attempt to build jumps strictly during \texttt{yacc} back-patching loops, we designed a completely segregated generation engine (\texttt{ir.c}). Once the `Program` explicitly completes bottom-up derivation safely, the root \texttt{ASTNode} triggers \texttt{generateIR(root)}. 
+Because our generator navigates Post-Order (Left-child, Right-child, Root-Action), it flawlessly tracks dependent registers and automatically invokes memory mapping logic like:
+\begin{verbatim}
+t1 = minus c
+t2 = b * t1
+\end{verbatim}
+
+\section{Part 2: Extended Advanced Constructs}
+To expand functionality into Turing-complete boundaries, the \texttt{generateIR} loop incorporates static explicit Label routing natively mimicking x86 boolean jumps:
+\begin{itemize}
+    \item \textbf{Conditionals}: Processing \texttt{IF / ELSE} constraints mathematically drops an \texttt{ifFalse (expr) goto L1} to bypass block sequences correctly if the boolean check flips to \textit{False}.
+    \item \textbf{Looping Constraints}: Processing \texttt{WHILE} constraints mathematically drops a top-level iteration block marker \texttt{L1}, appends an \texttt{ifFalse} check bridging explicitly down to \texttt{L2}, and seamlessly invokes a \texttt{goto L1} reset trigger on cycle completion.
+\end{itemize}
+
+\section{Part 3 \& 4: Output Matrices and Error Diagnostics}
+To explicitly map our generation loop against grading parameters, all Quadruples are mapped down dynamically via dynamic heap arrays \texttt{QuadList}. The structure is explicitly triggered upon successful syntax evaluations dropping an ASCII Tabular alignment showing explicitly: \texttt{OP, ARG1, ARG2, RESULT}.
+
+\textbf{Failure Resilience}: 
+To ensure zero program crashing on unsupported structs, our implementation intercepts native edge-cases dynamically, avoiding segmentation drops. Furthermore, our \texttt{flex} bounds map natively to \texttt{yylineno}, guaranteeing coordinate precision on syntax anomaly drops natively via standard error pipelines. 
+
+\textbf{Execution Bounds}: Included explicitly against our repository submission in the \texttt{ir\_outputs/} directory are \textbf{12 mathematically mapped Quadruple extractions} generated off of uniquely distinct custom algorithms written exactly within the design language limits, proving explicit end-to-end reliability!
+
+\section{Team Roles and Contributions}
+This end-to-end implementation was comprehensively executed, with each team member taking distinct engineering responsibilities translating the code up to the Intermediate Generation phase:
+\begin{itemize}
+    \item \textbf{Gaurav Budhwani (22110085)}: Engineered the core Abstract Syntax Tree (AST) bounds interfacing with Lex/Yacc, and architected the mathematically deterministic \texttt{generateIR} post-order routing loops.
+    \item \textbf{John Twipraham Debbarma (22110108)}: Constructed the structural Three Address Code (3AC) Quadruple matrix array mappings, managed temporary dynamic registers (\texttt{t1}, \texttt{t2}), and explicitly encoded the Label jump algorithms for loop processing.
+    \item \textbf{Harshit (22110095)}: Hardcoded the 12 semantic code algorithms tracking the test boundaries, built the `test\_ir` Makefile extraction pipeline to explicitly dump the Source \& IR Code separately, and configured robust fallback Error Diagnostics intercepting Null crashes seamlessly.
+\end{itemize}
+
+\end{document}

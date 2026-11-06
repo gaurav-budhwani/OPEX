@@ -1,7 +1,30 @@
 # Build Artifacts
+parser
 lexer
 src/lex.yy.c
+src/parser.tab.c
+src/parser.tab.h
+src/parser.output
+parser.tab.*
+parser.output
 *.o
+
+# LaTeX Auxiliary Files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Python & Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# macOS / System
+.DS_Store
 
 # Temporary Files
 specs_strings.txt

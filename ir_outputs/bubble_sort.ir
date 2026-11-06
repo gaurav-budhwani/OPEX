@@ -1,0 +1,90 @@
+=== SOURCE CODE ===
+PROGRAM BubbleSort
+BEGIN
+    VAR arr : ARRAY[5] OF INT;
+    VAR i : INT;
+    VAR j : INT;
+    VAR temp : INT;
+    VAR n : INT;
+
+    n := 5;
+    
+    // Initialize unsorted array manually for demo
+    arr[0] := 64;
+    arr[1] := 34;
+    arr[2] := 25;
+    arr[3] := 12;
+    arr[4] := 22;
+
+    PRINT "Sorting array...";
+
+    // Outer loop
+    FOR i := 0 TO n - 2 DO
+        // Inner loop
+        FOR j := 0 TO n - i - 2 DO
+            // Swap if current element is greater than next
+            IF arr[j] > arr[j + 1] THEN
+                temp := arr[j];
+                arr[j] := arr[j + 1];
+                arr[j + 1] := temp;
+            ENDIF
+        ENDFOR
+    ENDFOR
+
+    PRINT "Sorted Array:";
+    FOREACH val IN arr DO
+        PRINT val;
+    ENDFOR
+END
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+=            5                               n              
+=            64                              arr[0]         
+=            34                              arr[1]         
+=            25                              arr[2]         
+=            12                              arr[3]         
+=            22                              arr[4]         
+print        "Sorting array..."                                
+=            0                               i              
+Label                                        L1             
+-            n               2               t1             
+<=           i               t1              t2             
+ifFalse      t2                              L2             
+=            0                               j              
+Label                                        L3             
+-            n               i               t3             
+-            t3              2               t4             
+<=           j               t4              t5             
+ifFalse      t5                              L4             
++            j               1               t6             
+>            arr[j]          arr[t6]         t7             
+ifFalse      t7                              L5             
+=            arr[j]                          temp           
++            j               1               t8             
+=            arr[t8]                         arr[j]         
++            j               1               t9             
+=            temp                            arr[t9]        
+Label                                        L5             
++            j               1               t10            
+=            t10                             j              
+goto                                         L3             
+Label                                        L4             
++            i               1               t11            
+=            t11                             i              
+goto                                         L1             
+Label                                        L2             
+print        "Sorted Array:"                                
+=            0                               t12            
+len          arr                             t13            
+Label                                        L6             
+<            t12             t13             t14            
+ifFalse      t14                             L7             
+=            arr[t12]                        val            
+print        val                                            
++            t12             1               t15            
+=            t15                             t12            
+goto                                         L6             
+Label                                        L7             

@@ -1,0 +1,17 @@
+=== SOURCE CODE ===
+PROGRAM EdgeCasesParser
+MAIN
+BEGIN
+    VAR _privateVar : INT;
+    VAR validID : FLOAT;
+    _privateVar := 5;
+    validID := 1.5;
+END
+
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+=            5                               _privateVar    
+=            1.5                             validID        

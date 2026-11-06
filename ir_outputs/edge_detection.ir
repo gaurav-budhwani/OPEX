@@ -1,0 +1,63 @@
+=== SOURCE CODE ===
+PROGRAM EdgeDetection
+BEGIN
+    // Define Sobel kernels
+    KERNEL sobelX := [[-1, 0, 1],
+                       [-2, 0, 2],
+                       [-1, 0, 1]]
+
+    KERNEL sobelY := [[-1, -2, -1],
+                       [ 0,  0,  0],
+                       [ 1,  2,  1]]
+
+    // Load and convert to grayscale
+    AUTO img  := LOAD("input.jpg")
+    AUTO gray := GRAYSCALE(img)
+
+    // Apply Sobel operators
+    AUTO edgesX := gray ** sobelX
+    AUTO edgesY := gray ** sobelY
+
+    // Combine edge maps (element-wise addition)
+    AUTO combined := edgesX + edgesY
+
+    // Threshold to produce binary edge map
+    AUTO edgeMap := THRESHOLD(combined, 50)
+
+    SAVE(edgeMap, "edges.png")
+    PRINT "Edge detection complete: {img.width}x{img.height}"
+END
+
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+minus        1                               t1             
+minus        2                               t2             
+minus        1                               t3             
+=                                            sobelX         
+minus        1                               t4             
+minus        2                               t5             
+minus        1                               t6             
+=                                            sobelY         
+param        "input.jpg"                                    
+call         LOAD            1               t7             
+=            t7                              img            
+param        img                                            
+call         GRAYSCALE       1               t8             
+=            t8                              gray           
+**           gray            sobelX          t9             
+=            t9                              edgesX         
+**           gray            sobelY          t10            
+=            t10                             edgesY         
++            edgesX          edgesY          t11            
+=            t11                             combined       
+param        50                                             
+param        combined                                       
+call         THRESHOLD       2               t12            
+=            t12                             edgeMap        
+param        "edges.png"                                    
+param        edgeMap                                        
+call         SAVE            2               t13            
+print        "Edge detection complete: {img.width}x{img.height}"                                

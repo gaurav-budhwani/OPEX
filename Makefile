@@ -5,23 +5,39 @@ BISON = bison
 
 all: parser
 
-parser: src/lex.yy.c src/parser.tab.c src/ast.c
-	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c src/ast.c -o parser
+parser: src/lex.yy.c src/parser.tab.c src/ast.c src/ir.c
+	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c src/ast.c src/ir.c -o parser
 
 src/lex.yy.c: src/lexer.l src/parser.tab.h
 	$(FLEX) -o src/lex.yy.c src/lexer.l
 
 src/parser.tab.c src/parser.tab.h: src/parser.y
-	$(BISON) -d -o src/parser.tab.c src/parser.y
+	$(BISON) -d -v -o src/parser.tab.c src/parser.y
 
 test: parser
 	./parser < tests/sample.opx
 
+test_derivations: parser
+	@for f in tests/*.opx; do \
+		echo "=== Testing Derivations for $$f ==="; \
+		./parser --derivations < "$$f" || true; \
+	done
+
 test_all: parser
 	@for f in tests/*.opx; do \
-		echo -n "Testing $$f... "; \
-		./parser < "$$f"; \
+		echo -n "Parsing $$f... "; \
+		./parser --parse-only < "$$f" 2>&1 || true; \
+	done
+
+test_ir: parser
+	@mkdir -p ir_outputs
+	@for f in tests/*.opx; do \
+		echo "Generating IR for $$f..."; \
+		echo "=== SOURCE CODE ===" > "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		cat "$$f" >> "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		echo "\n=== INTERMEDIATE CODE ===" >> "ir_outputs/$$(basename "$$f" .opx).ir"; \
+		./parser < "$$f" >> "ir_outputs/$$(basename "$$f" .opx).ir" 2>&1 || true; \
 	done
 
 clean:
-	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h parser
+	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h src/parser.output parser

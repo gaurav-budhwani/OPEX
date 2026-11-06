@@ -1,0 +1,67 @@
+=== SOURCE CODE ===
+PROGRAM PrimeCheck
+BEGIN
+    VAR n : INT;
+    VAR i : INT;
+    VAR isPrime : BOOL;
+
+    PRINT "Enter a number to check:";
+    INPUT n;
+
+    // Assume true initially
+    isPrime := TRUE;
+
+    // Handle edge cases
+    IF n <= 1 THEN
+        isPrime := FALSE;
+    ENDIF
+
+    // Iterate from 2 to n/2
+    // OPEX's FOR loop automatically handles the range
+    FOR i := 2 TO n / 2 DO
+        // If n is divisible by i, it is not prime
+        IF (n % i) == 0 THEN
+            isPrime := FALSE;
+        ENDIF
+    ENDFOR
+
+    IF isPrime == TRUE THEN
+        PRINT "{n} is a Prime Number";
+    ELSE
+        PRINT "{n} is NOT a Prime Number";
+    ENDIF
+END
+
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+print        "Enter a number to check:"                                
+input                                        n              
+=            TRUE                            isPrime        
+<=           n               1               t1             
+ifFalse      t1                              L1             
+=            FALSE                           isPrime        
+Label                                        L1             
+=            2                               i              
+Label                                        L2             
+/            n               2               t2             
+<=           i               t2              t3             
+ifFalse      t3                              L3             
+%            n               i               t4             
+==           t4              0               t5             
+ifFalse      t5                              L4             
+=            FALSE                           isPrime        
+Label                                        L4             
++            i               1               t6             
+=            t6                              i              
+goto                                         L2             
+Label                                        L3             
+==           isPrime         TRUE            t7             
+ifFalse      t7                              L6             
+print        "{n} is a Prime Number"                                
+goto                                         L5             
+Label                                        L6             
+print        "{n} is NOT a Prime Number"                                
+Label                                        L5             

@@ -1,0 +1,77 @@
+=== SOURCE CODE ===
+PROGRAM MatrixMagic
+    // Global Struct Definition
+    STRUCT Pixel
+        r : INT
+        g : INT
+        b : INT
+    ENDSTRUCT
+
+    FUNCTION initMatrix() : VOID
+    BEGIN
+        PRINT "Initializing...";
+    END
+
+MAIN
+BEGIN
+    // Type Inference: Compiler knows 'rows' is INT
+    AUTO rows := 10;
+    
+    // 2D Array Declaration
+    VAR matrixA : ARRAY[10][10] OF INT;
+    VAR matrixB : ARRAY[10][10] OF INT;
+    VAR sumMatrix : ARRAY[10][10] OF INT;
+
+    // FOREACH Loop (Iterates through rows)
+    FOREACH row IN matrixA DO
+        FOREACH val IN row DO
+            val := 5;
+        ENDFOR
+    ENDFOR
+
+    // Vectorized Addition (Conceptual for Semantics)
+    // In A4, this generates loops automatically
+    sumMatrix := matrixA + matrixB;
+
+    // Matrix Slicing (Accessing a sub-region)
+    // Extracts rows 0 to 5
+    VAR subRegion : ARRAY[5][10] OF INT;
+    subRegion := matrixA[0..5];
+
+    PRINT "Matrix Processing Complete";
+END
+
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         initMatrix                                     
+print        "Initializing..."                                
+endfunc      initMatrix                                     
+=            10                              rows           
+=            0                               t1             
+len          matrixA                         t2             
+Label                                        L1             
+<            t1              t2              t3             
+ifFalse      t3                              L2             
+=            matrixA[t1]                     row            
+=            0                               t4             
+len          row                             t5             
+Label                                        L3             
+<            t4              t5              t6             
+ifFalse      t6                              L4             
+=            row[t4]                         val            
+=            5                               val            
++            t4              1               t7             
+=            t7                              t4             
+goto                                         L3             
+Label                                        L4             
++            t1              1               t8             
+=            t8                              t1             
+goto                                         L1             
+Label                                        L2             
++            matrixA         matrixB         t9             
+=            t9                              sumMatrix      
+=            matrixA[0..5]                   subRegion      
+print        "Matrix Processing Complete"                                

@@ -1,0 +1,94 @@
+=== SOURCE CODE ===
+PROGRAM StackDemo
+    STRUCT Stack
+        data : ARRAY[10] OF INT;
+        top : INT;
+    ENDSTRUCT
+
+    // Global stack instance
+    VAR s : Stack;
+
+    FUNCTION push(val : INT) : VOID
+    BEGIN
+        IF s.top >= 9 THEN
+            PRINT "Error: Stack Overflow";
+        ELSE
+            s.top := s.top + 1;
+            s.data[s.top] := val;
+        ENDIF
+    END
+
+    FUNCTION pop() : INT
+    BEGIN
+        VAR val : INT;
+        IF s.top < 0 THEN
+            PRINT "Error: Stack Underflow";
+            RETURN -1;
+        ELSE
+            val := s.data[s.top];
+            s.top := s.top - 1;
+            RETURN val;
+        ENDIF
+    END
+
+MAIN
+BEGIN
+    // Initialize Stack
+    s.top := -1;
+
+    PRINT "Pushing 10, 20, 30...";
+    push(10);
+    push(20);
+    push(30);
+
+    PRINT "Popping values...";
+    PRINT pop(); // Should print 30
+    PRINT pop(); // Should print 20
+    PRINT pop(); // Should print 10
+END
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+func         push                                           
+>=           s.top           9               t1             
+ifFalse      t1                              L2             
+print        "Error: Stack Overflow"                                
+goto                                         L1             
+Label                                        L2             
++            s.top           1               t2             
+=            t2                              s.top          
+=            val                             s.data[s.top]  
+Label                                        L1             
+endfunc      push                                           
+func         pop                                            
+<            s.top           0               t3             
+ifFalse      t3                              L4             
+print        "Error: Stack Underflow"                                
+minus        1                               t4             
+return       t4                                             
+goto                                         L3             
+Label                                        L4             
+=            s.data[s.top]                   val            
+-            s.top           1               t5             
+=            t5                              s.top          
+return       val                                            
+Label                                        L3             
+endfunc      pop                                            
+minus        1                               t6             
+=            t6                              s.top          
+print        "Pushing 10, 20, 30..."                                
+param        10                                             
+call         push            1               t7             
+param        20                                             
+call         push            1               t8             
+param        30                                             
+call         push            1               t9             
+print        "Popping values..."                                
+call         pop             0               t10            
+print        t10                                            
+call         pop             0               t11            
+print        t11                                            
+call         pop             0               t12            
+print        t12                                            

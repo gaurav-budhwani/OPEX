@@ -1,0 +1,54 @@
+=== SOURCE CODE ===
+PROGRAM PalindromeCheck
+BEGIN
+    VAR original : INT;
+    VAR reversed : INT;
+    VAR remainder : INT;
+    VAR temp : INT;
+
+    PRINT "Enter an integer:";
+    INPUT original;
+
+    reversed := 0;
+    temp := original;
+
+    WHILE temp > 0 DO
+        remainder := temp % 10;
+        reversed := (reversed * 10) + remainder;
+        temp := temp / 10;
+    ENDWHILE
+
+    IF original == reversed THEN
+        PRINT "{original} is a palindrome.";
+    ELSE
+        PRINT "{original} is NOT a palindrome.";
+    ENDIF
+END
+=== INTERMEDIATE CODE ===
+
+Intermediate Code (Quadruples):
+op           arg1            arg2            result         
+-----------------------------------------------------------
+print        "Enter an integer:"                                
+input                                        original       
+=            0                               reversed       
+=            original                        temp           
+Label                                        L1             
+>            temp            0               t1             
+ifFalse      t1                              L2             
+%            temp            10              t2             
+=            t2                              remainder      
+*            reversed        10              t3             
++            t3              remainder       t4             
+=            t4                              reversed       
+/            temp            10              t5             
+=            t5                              temp           
+goto                                         L1             
+Label                                        L2             
+==           original        reversed        t6             
+ifFalse      t6                              L4             
+print        "{original} is a palindrome."                                
+goto                                         L3             
+Label                                        L4             
+print        "{original} is NOT a palindrome."                                
+Label                                        L3             
