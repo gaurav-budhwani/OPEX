@@ -64,3 +64,4 @@ Flips the image along an axis (`mode = 0` for horizontal reflection, `mode = 1` 
 ```opex
 AUTO mirrored := FLIP(img, 0)
 ```
+

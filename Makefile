@@ -3,6 +3,8 @@ CFLAGS = -I src
 FLEX = flex
 BISON = bison
 
+.PHONY: all clean test test_derivations test_all test_semantic test_ir test_run docs docs-serve install
+
 all: parser opex
 
 parser: src/lex.yy.c src/parser.tab.c src/ast.c src/ir.c src/semantic.c src/codegen.c
@@ -64,5 +66,24 @@ test_run: parser
 	@echo "\n--- Running Edge Detection Pipeline (Pure OPEX) ---"
 	./parser --run tests/edge_detection.opx
 
+docs:
+	@if [ -d ".venv" ]; then \
+		.venv/bin/mkdocs build --strict; \
+	elif command -v mkdocs >/dev/null 2>&1; then \
+		mkdocs build --strict; \
+	else \
+		echo "mkdocs not found. Run: python3 -m venv .venv && .venv/bin/pip install mkdocs-material"; exit 1; \
+	fi
+
+docs-serve:
+	@if [ -d ".venv" ]; then \
+		.venv/bin/mkdocs serve; \
+	elif command -v mkdocs >/dev/null 2>&1; then \
+		mkdocs serve; \
+	else \
+		echo "mkdocs not found. Run: python3 -m venv .venv && .venv/bin/pip install mkdocs-material"; exit 1; \
+	fi
+
 clean:
 	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h src/parser.output parser opex out.c edges.ppm edges.png
+	rm -rf site

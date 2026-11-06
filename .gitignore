@@ -32,3 +32,7 @@ specs_strings.txt
 edges.ppm
 edges.png
 out.c
+
+# Documentation Build & Virtual Environment
+site/
+.venv/

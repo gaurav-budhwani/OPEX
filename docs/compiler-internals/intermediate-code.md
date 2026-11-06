@@ -63,3 +63,4 @@ endfunc      fib
 - **Conditionals (`IF / ELSE`)**: Flattens nested blocks using conditional `ifFalse <cond> <label>` jumps.
 - **Loops (`WHILE`, `FOR`)**: Injects a top loop marker (`L_start`), evaluates the invariant, and jumps back upon iteration completion (`goto L_start`).
 - **Temporary Register Management**: Dynamically allocates unbounded virtual registers (`t1`, `t2`, `t3`, ...).
+

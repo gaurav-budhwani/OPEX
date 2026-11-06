@@ -52,3 +52,4 @@ END
 [OPEX Runtime] Saved image: edges.png (64x64)
 Edge detection complete: 64x64
 ```
+

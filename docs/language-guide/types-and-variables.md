@@ -77,3 +77,4 @@ Arrays support range-based slicing using the `..` operator:
 VAR subRegion : ARRAY[5][10] OF INT;
 subRegion := matrixA[0..5];
 ```
+

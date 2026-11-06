@@ -65,3 +65,4 @@ file hello
 3. **`VAR <Identifier> : <Type>;`**: Statically typed variable declaration.
 4. **`:=`**: The OPEX assignment operator.
 5. **`PRINT "<text> {variable}"`**: Formatted output with dynamic string interpolation.
+

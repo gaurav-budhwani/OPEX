@@ -30,3 +30,4 @@ The development of the OPEX compiler was structured across 4 rigorous academic a
 ## 4. Language Specification
 - **Authoritative Manual**: [`language_specifications.pdf`](https://github.com/gaurav-budhwani/OPEX/blob/main/language_specifications.pdf)
 - Outlines the complete lexical rules, grammar, operator precedence tables, and computer vision typing expectations.
+

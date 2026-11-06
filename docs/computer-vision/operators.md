@@ -42,3 +42,4 @@ AUTO result := LOAD("input.jpg")
 ```opex
 AUTO edgeMap := ((gray ** sobelX) + (gray ** sobelY)) |> THRESHOLD(50)
 ```
+

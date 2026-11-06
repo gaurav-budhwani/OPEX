@@ -42,3 +42,4 @@ flowchart TD
 - **Target Lowering**: Lowers the verified AST into clean, structured C99 ([`src/codegen.c`](https://github.com/gaurav-budhwani/OPEX/blob/main/src/codegen.c)).
 - **Runtime Library**: Links against a self-contained header ([`src/runtime.h`](https://github.com/gaurav-budhwani/OPEX/blob/main/src/runtime.h)) implementing memory buffers, convolution, and image filtering.
 - **Native Execution**: Invokes `gcc`/`clang` to generate bare-metal executables.
+

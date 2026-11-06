@@ -112,3 +112,4 @@ BEGIN
     PRINT dequeue(); // 2
 END
 ```
+

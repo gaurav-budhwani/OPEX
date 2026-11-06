@@ -77,3 +77,4 @@ s.data[s.top] := 100;
 PRINT "Top index: {s.top}";
 PRINT "Top value: {s.data[s.top]}";
 ```
+

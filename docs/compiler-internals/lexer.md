@@ -37,3 +37,4 @@ int yycolumn = 1;
 ```
 
 When a newline `\n` is encountered, `yycolumn` resets to 1, while `yylineno` increments automatically.
+

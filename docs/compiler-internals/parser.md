@@ -46,3 +46,4 @@ python3 print_table.py > table.csv
 ```
 
 The resulting table maps all **339 states** against every terminal and non-terminal symbol with their associated `shift`, `reduce`, and `goto` transitions.
+
