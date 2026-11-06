@@ -3,87 +3,78 @@ hide:
   - feedback
 ---
 
-<div class="hero-wrapper">
-  <div class="hero-badge">
-    <span class="pulse-dot"></span> OPEX v1.0 • CS327 Compilers Engineering
+<div class="hero-box">
+  <div class="hero-tags">
+    <span class="pill-black">CS327 Compilers</span>
+    <span class="pill-gray">C99 Backend</span>
+    <span class="pill-gray">Flex & Bison</span>
+    <span class="pill-gray">3AC Quadruples</span>
+    <span class="pill-gray">Computer Vision</span>
   </div>
-  <h1 class="hero-title">The OPEX Programming Language</h1>
-  <p class="hero-subtitle">
-    A high-performance domain-specific compiled language uniting algorithmic computing, first-class computer vision tensors, 2D convolution, and native bare-metal execution.
+  <h1 class="hero-headline">OPEX Programming Language</h1>
+  <p class="hero-desc">
+    Optimized Processing Engine for eXecution. A statically-typed domain-specific compiled language bridging algorithmic computing with first-class computer vision tensors, spatial convolution, and bare-metal native execution.
   </p>
-  <div class="hero-actions">
-    <a href="getting-started/installation/" class="btn-primary">
-      <span>Get Started</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+  <div class="hero-buttons">
+    <a href="getting-started/installation/" class="btn-black">
+      Documentation <span>&rarr;</span>
     </a>
-    <a href="compiler-internals/pipeline/" class="btn-secondary">
-      <span>Compiler Architecture</span>
+    <a href="compiler-internals/pipeline/" class="btn-white">
+      Compiler Architecture
     </a>
-    <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-secondary">
-      <span>GitHub Repository ↗</span>
+    <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-white">
+      GitHub Repository <span>&rarr;</span>
     </a>
   </div>
 </div>
 
-<div class="feature-grid">
-  <div class="feature-card">
-    <div class="card-icon">⚡</div>
+## Architecture
+
+<div class="minimal-grid">
+  <div class="minimal-card">
     <h3>Computer Vision Primitives</h3>
-    <p>First-class language types for <code>IMAGE</code>, <code>MATRIX</code>, <code>KERNEL</code>, and <code>PIXEL</code>. Process multi-channel tensors directly with clean syntax instead of boilerplate C pointer APIs.</p>
-    <span class="card-tag">IMAGE / MATRIX / KERNEL</span>
+    <p>First-class language types for <code>IMAGE</code>, <code>MATRIX</code>, <code>KERNEL</code>, and <code>PIXEL</code>. Direct memory layout and pixel channel manipulation without external library wrappers.</p>
+    <span class="card-mono">IMAGE / MATRIX / KERNEL</span>
   </div>
 
-  <div class="feature-card">
-    <div class="card-icon">⚙️</div>
-    <h3>Convolution & Pipeline Operators</h3>
-    <p>Native 2D spatial convolution via infix <code>**</code> and Unix-style stream processing via <code>|></code>. Chain operations like <code>img |> GRAYSCALE |> THRESHOLD(50)</code> seamlessly.</p>
-    <span class="card-tag">** and |&gt; Operators</span>
+  <div class="minimal-card">
+    <h3>Convolution and Pipeline Operators</h3>
+    <p>2D spatial convolution via infix <code>**</code> and functional stream processing via <code>|&gt;</code>. Enables concise chaining such as <code>img |&gt; GRAYSCALE |&gt; THRESHOLD(50)</code>.</p>
+    <span class="card-mono">** and |&gt; Operators</span>
   </div>
 
-  <div class="feature-card">
-    <div class="card-icon">🛡️</div>
+  <div class="minimal-card">
     <h3>Scoped Semantic Type Checker</h3>
-    <p>Hierarchical symbol table with lexical scoping, variable shadowing protection, undeclared identifier catching, and strict parameter type validation before code generation.</p>
-    <span class="card-tag">src/semantic.c</span>
+    <p>Hierarchical symbol table with lexical scoping, variable shadowing rules, undeclared identifier validation, and strict parameter type checking before lowering.</p>
+    <span class="card-mono">src/semantic.c</span>
   </div>
 
-  <div class="feature-card">
-    <div class="card-icon">📐</div>
-    <h3>Three-Address Code (3AC)</h3>
-    <p>Deterministic quadruple intermediate representation (<code>[OP, ARG1, ARG2, RES]</code>) with temporary register allocation and structured control flow labeling.</p>
-    <span class="card-tag">src/ir.c (Quadruples)</span>
+  <div class="minimal-card">
+    <h3>Three-Address Code Intermediate Representation</h3>
+    <p>Deterministic intermediate code represented as quadruples (<code>[OP, ARG1, ARG2, RES]</code>) with temporary register allocation and structured control flow labeling.</p>
+    <span class="card-mono">src/ir.c (Quadruples)</span>
   </div>
 
-  <div class="feature-card">
-    <div class="card-icon">🚀</div>
+  <div class="minimal-card">
     <h3>Native C99 Code Generator</h3>
-    <p>Lowers high-level AST and vision operations into standalone, zero-dependency C99 code, compiling down to optimized <strong>Mach-O / ELF</strong> native binaries.</p>
-    <span class="card-tag">Clang / GCC Backend</span>
+    <p>Lowers the abstract syntax tree into clean, self-contained C99 code, compiling directly to standalone Mach-O and ELF native executable binaries.</p>
+    <span class="card-mono">Clang / GCC Backend</span>
   </div>
 
-  <div class="feature-card">
-    <div class="card-icon">💻</div>
-    <h3>Unified Multi-Mode CLI</h3>
-    <p>Single compiler binary supporting live on-the-fly execution (<code>--run</code>), binary compilation (<code>-o &lt;bin&gt;</code>), semantic verification (<code>--check</code>), and grammar derivation dumps.</p>
-    <span class="card-tag">./opex CLI</span>
+  <div class="minimal-card">
+    <h3>Unified Command-Line Driver</h3>
+    <p>Single binary supporting immediate on-the-fly execution (<code>--run</code>), binary compilation (<code>-o &lt;bin&gt;</code>), semantic verification (<code>--check</code>), and grammar derivation dumps.</p>
+    <span class="card-mono">./opex CLI</span>
   </div>
 </div>
 
 ---
 
-## 🔍 Language Showcase
+## Language Specification
 
-See how OPEX expressively handles complex computer vision pipelines in just a few lines of code:
+The following example demonstrates an end-to-end edge detection pipeline written in OPEX:
 
-<div class="terminal-frame" markdown="1">
-<div class="terminal-header">
-  <span class="terminal-dot dot-red"></span>
-  <span class="terminal-dot dot-yellow"></span>
-  <span class="terminal-dot dot-green"></span>
-  <span class="terminal-title">edge_detection.opx — Multi-Stage Compilation Pipeline</span>
-</div>
-
-=== "Pure OPEX Source"
+=== "OPEX Source"
     ```opex
     PROGRAM EdgeDetectionPipeline
     BEGIN
@@ -104,7 +95,7 @@ See how OPEX expressively handles complex computer vision pipelines in just a fe
     END
     ```
 
-=== "Three-Address Intermediate Code (3AC)"
+=== "Three-Address Intermediate Code"
     ```text
     === THREE-ADDRESS CODE QUADRUPLES ===
     [0001] PARAM       "input.jpg"             -                  -
@@ -121,7 +112,7 @@ See how OPEX expressively handles complex computer vision pipelines in just a fe
     [0012] ASSIGN      t6                      -                  edges
     ```
 
-=== "Compiled Native Execution"
+=== "Native Execution"
     ```bash
     $ ./opex --run tests/edge_detection.opx
     Generating synthetic 64x64 sample image...
@@ -134,73 +125,63 @@ See how OPEX expressively handles complex computer vision pipelines in just a fe
     Generated image viewer script: view_edges.py
     Run: python3 view_edges.py to inspect the output.
     ```
-</div>
 
 ---
 
-## 🏗️ Compiler Architecture Pipeline
-
-OPEX is engineered with a modular multi-stage compilation pipeline:
+## Compiler Pipeline
 
 ```mermaid
 flowchart LR
-    A["OPEX Source (.opx)"] --> B["Flex Scanner (src/lexer.l)"]
-    B --> C["Bison LALR(1) Parser (src/parser.y)"]
-    C --> D["Abstract Syntax Tree (src/ast.c)"]
-    D --> E["Symbol Table & Semantic Check (src/semantic.c)"]
-    E --> F["Three-Address Code IR (src/ir.c)"]
-    E --> G["C99 Code Generator (src/codegen.c)"]
+    A["Source (.opx)"] --> B["Flex Scanner"]
+    B --> C["Bison LALR(1) Parser"]
+    C --> D["Abstract Syntax Tree"]
+    D --> E["Semantic Analysis"]
+    E --> F["Three-Address Code (3AC)"]
+    E --> G["C99 Code Generator"]
     G --> H["Host Clang / GCC"]
-    H --> I["Native Binary Executable (Mach-O / ELF)"]
+    H --> I["Native Executable Binary"]
 
-    style A fill:#0e1726,stroke:#38bdf8,stroke-width:2px,color:#fff
-    style D fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#fff
-    style E fill:#1e1b4b,stroke:#a855f7,stroke-width:2px,color:#fff
-    style F fill:#0f172a,stroke:#6366f1,stroke-width:2px,color:#fff
-    style G fill:#0f172a,stroke:#06b6d4,stroke-width:2px,color:#fff
-    style I fill:#064e3b,stroke:#10b981,stroke-width:2px,color:#fff
+    classDef default fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#000000;
 ```
 
 ---
 
-## 🚀 Quick Start in 60 Seconds
+## Quick Start
 
-Clone and compile the entire compiler engine with zero external dependencies:
-
-=== "macOS & Linux"
+=== "Build from Source"
     ```bash
-    # 1. Clone repository
+    # Clone repository
     git clone https://github.com/gaurav-budhwani/OPEX.git
     cd OPEX
 
-    # 2. Build the compiler binary
+    # Build compiler binary
     make
 
-    # 3. Execute any OPEX program instantly
+    # Run any OPEX program directly
     ./opex --run tests/bubble_sort.opx
 
-    # 4. Or compile directly to a standalone native binary
+    # Compile to a native binary
     ./opex -o bubble_sort tests/bubble_sort.opx
     ./bubble_sort
     ```
 
-=== "Run Full Test Suite"
+=== "Run Test Suites"
     ```bash
-    # Test all 16 grammar and language test files
+    # Validate all 16 language grammar test cases
     make test_all
 
-    # Run scoped semantic type-checker on all suites
+    # Run scoped semantic type analysis
     make test_semantic
 
-    # Execute interactive programs (sorting, matrix mult, queues, stacks, CV)
+    # Execute interactive benchmark programs
     make test_run
     ```
 
 ---
 
-## 👥 Course & Contributors
+## Project Information
 
-This compiler was developed for **CS327: Compilers** at the **Indian Institute of Technology Gandhinagar (IITGN)** under the guidance of **Prof. Shouvick Mondal**.
+Developed for **CS327: Compilers** at the **Indian Institute of Technology Gandhinagar (IITGN)** under the guidance of **Prof. Shouvick Mondal**.
 
 | Contributor | Roll Number | Focus Area |
 | :--- | :--- | :--- |

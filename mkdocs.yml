@@ -10,24 +10,11 @@ theme:
   language: en
   logo: assets/logo.svg
   favicon: assets/logo.svg
-  font:
-    text: Inter
-    code: JetBrains Mono
+  font: false
   palette:
-    # Dark mode (Primary default for modern dev aesthetic)
-    - scheme: slate
-      primary: custom
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
-    # Light mode
     - scheme: default
-      primary: custom
-      accent: indigo
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
+      primary: white
+      accent: black
   features:
     - navigation.instant
     - navigation.instant.progress
