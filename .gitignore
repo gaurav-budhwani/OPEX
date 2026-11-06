@@ -28,3 +28,6 @@ __pycache__/
 
 # Temporary Files
 specs_strings.txt
+edges.ppm
+edges.png
+out.c

@@ -2,13 +2,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "ast.h"
 #include "ir.h"
+#include "semantic.h"
+#include "codegen.h"
 
 extern int yylex();
 extern int yyparse();
 extern int yylineno;
 extern int yycolumn;
+extern FILE* yyin;
 
 ASTNode* root = NULL;
 
@@ -326,17 +330,131 @@ ArrayInitializer:
 %%
 
 int main(int argc, char* argv[]) {
-    if (yyparse() == 0 && root != NULL) {
-        if (argc > 1 && strcmp(argv[1], "--derivations") == 0) {
-            printReverseDerivation(root);
-            printf("Syntax Correct\n");
-        } else if (argc > 1 && strcmp(argv[1], "--parse-only") == 0) {
-            printf("Syntax Correct\n");
-        } else {
-            init_ir();
-            generateIR(root);
-            printQuads();
+    int run_mode = 0;
+    int derivations_mode = 0;
+    int parse_only_mode = 0;
+    int semantic_check_mode = 0;
+    int emit_c_mode = 0;
+    char* output_bin = NULL;
+    char* input_filename = NULL;
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--run") == 0) {
+            run_mode = 1;
+        } else if (strcmp(argv[i], "--derivations") == 0) {
+            derivations_mode = 1;
+        } else if (strcmp(argv[i], "--parse-only") == 0) {
+            parse_only_mode = 1;
+        } else if (strcmp(argv[i], "--semantic-check") == 0 || strcmp(argv[i], "--check") == 0) {
+            semantic_check_mode = 1;
+        } else if (strcmp(argv[i], "-c") == 0) {
+            emit_c_mode = 1;
+        } else if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
+            output_bin = argv[++i];
+        } else if (argv[i][0] != '-') {
+            input_filename = argv[i];
         }
     }
+
+    if (input_filename) {
+        FILE* f = fopen(input_filename, "r");
+        if (!f) {
+            fprintf(stderr, "Error: Could not open input file '%s'\n", input_filename);
+            return 1;
+        }
+        yyin = f;
+    }
+
+    if (yyparse() != 0 || root == NULL) {
+        return 1;
+    }
+
+    if (parse_only_mode) {
+        printf("Syntax Correct\n");
+        return 0;
+    }
+
+    if (derivations_mode) {
+        printReverseDerivation(root);
+        printf("Syntax Correct\n");
+        return 0;
+    }
+
+    // Semantic Analysis
+    int sem_errs = semantic_check(root);
+    if (semantic_check_mode) {
+        if (sem_errs == 0) {
+            printf("Semantic Verification Passed: 0 errors\n");
+            return 0;
+        } else {
+            fprintf(stderr, "Semantic Verification Failed: %d error(s)\n", sem_errs);
+            return 1;
+        }
+    }
+
+    if (emit_c_mode || output_bin || run_mode) {
+        if (sem_errs > 0) {
+            fprintf(stderr, "Compilation aborted due to semantic errors.\n");
+            return 1;
+        }
+
+        char c_filepath[256];
+        if (emit_c_mode && output_bin) {
+            strncpy(c_filepath, output_bin, sizeof(c_filepath) - 1);
+            c_filepath[sizeof(c_filepath) - 1] = '\0';
+        } else if (run_mode || output_bin) {
+            snprintf(c_filepath, sizeof(c_filepath), "/tmp/opex_%d.c", getpid());
+        } else {
+            strcpy(c_filepath, "out.c");
+        }
+
+        FILE* c_out = fopen(c_filepath, "w");
+        if (!c_out) {
+            fprintf(stderr, "Error: Could not create intermediate C file '%s'\n", c_filepath);
+            return 1;
+        }
+        codegen_c(root, c_out);
+        fclose(c_out);
+
+        if (emit_c_mode && !output_bin) {
+            printf("C code generated successfully: %s\n", c_filepath);
+            return 0;
+        }
+
+        if (output_bin || run_mode) {
+            char bin_filepath[256];
+            if (output_bin) {
+                strncpy(bin_filepath, output_bin, sizeof(bin_filepath) - 1);
+                bin_filepath[sizeof(bin_filepath) - 1] = '\0';
+            } else {
+                snprintf(bin_filepath, sizeof(bin_filepath), "/tmp/opex_bin_%d", getpid());
+            }
+
+            char compile_cmd[1024];
+            snprintf(compile_cmd, sizeof(compile_cmd), "gcc -O2 -Wno-parentheses-equality %s -o %s -I src -lm", c_filepath, bin_filepath);
+            int ret = system(compile_cmd);
+            if (ret != 0) {
+                fprintf(stderr, "Error: Native backend compilation failed.\n");
+                if (run_mode) unlink(c_filepath);
+                return 1;
+            }
+
+            if (run_mode) {
+                int run_ret = system(bin_filepath);
+                unlink(c_filepath);
+                unlink(bin_filepath);
+                return run_ret;
+            } else {
+                unlink(c_filepath);
+                printf("Native binary generated successfully: %s\n", bin_filepath);
+                return 0;
+            }
+        }
+    }
+
+    // Default behavior (Assignment 4 3AC Intermediate Code Quadruples)
+    init_ir();
+    generateIR(root);
+    printQuads();
     return 0;
 }

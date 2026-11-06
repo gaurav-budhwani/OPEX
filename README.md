@@ -55,24 +55,43 @@ Ensure `gcc`, `flex`, and `bison` are installed.
    make
    ```
 
-2. **Generate Intermediate Code (3AC Quadruples):**
+2. **Execute Programs Directly (`--run`):**
+   ```bash
+   ./parser --run tests/bubble_sort.opx
+   ./parser --run tests/edge_detection.opx
+   make test_run
+   ```
+
+3. **Compile to Standalone Native Binary (`-o`):**
+   ```bash
+   ./parser -o myprogram tests/bubble_sort.opx
+   ./myprogram
+   ```
+
+4. **Run Semantic Checks (`--check`):**
+   ```bash
+   ./parser --check tests/stack.opx
+   make test_semantic
+   ```
+
+5. **Generate Intermediate Code (3AC Quadruples):**
    ```bash
    ./parser < tests/sample.opx
    # Or generate all IR outputs:
    make test_ir
    ```
 
-3. **Run Syntax & Parse Tests:**
+6. **Run Syntax & Parse Tests:**
    ```bash
    make test_all
    ```
 
-4. **View Derivations (Assignment 3 Mode):**
+7. **View Derivations (Assignment 3 Mode):**
    ```bash
    ./parser --derivations < tests/sample.opx
    ```
 
-5. **Generate LALR(1) Parsing Table CSV:**
+8. **Generate LALR(1) Parsing Table CSV:**
    ```bash
    python3 print_table.py > table.csv
    ```
