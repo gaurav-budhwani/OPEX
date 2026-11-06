@@ -4,27 +4,34 @@ hide:
 ---
 
 <div class="hero-box">
-  <div class="hero-tags">
-    <span class="pill-cobalt">CS327 Compilers</span>
-    <span class="pill-subtle">C99 Backend</span>
-    <span class="pill-subtle">Flex & Bison</span>
-    <span class="pill-subtle">3AC Quadruples</span>
-    <span class="pill-subtle">Computer Vision</span>
-  </div>
-  <h1 class="hero-headline">OPEX</h1>
-  <p class="hero-desc">
-    Optimized Processing Engine for eXecution. A statically-typed domain-specific compiled language bridging algorithmic computing with first-class computer vision tensors, spatial convolution, and bare-metal native execution.
-  </p>
-  <div class="hero-buttons">
-    <a href="getting-started/installation/" class="btn-cobalt">
-      Documentation <span>&rarr;</span>
-    </a>
-    <a href="compiler-internals/pipeline/" class="btn-outline">
-      Compiler Architecture
-    </a>
-    <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-outline">
-      GitHub Repository <span>&rarr;</span>
-    </a>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tags">
+        <span class="pill-cobalt">CS327 Compilers</span>
+        <span class="pill-subtle">C99 Backend</span>
+        <span class="pill-subtle">Flex & Bison</span>
+        <span class="pill-subtle">3AC Quadruples</span>
+        <span class="pill-subtle">Computer Vision</span>
+      </div>
+      <h1 class="hero-headline">OPEX</h1>
+      <p class="hero-desc">
+        Optimized Processing Engine for eXecution. A statically-typed domain-specific compiled language bridging algorithmic computing with first-class computer vision tensors, spatial convolution, and bare-metal native execution.
+      </p>
+      <div class="hero-buttons">
+        <a href="getting-started/installation/" class="btn-cobalt">
+          Documentation <span>&rarr;</span>
+        </a>
+        <a href="compiler-internals/pipeline/" class="btn-outline">
+          Compiler Architecture
+        </a>
+        <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-outline">
+          GitHub Repository <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-mascot">
+      <img src="assets/logo.png" alt="OPEX Mascot" />
+    </div>
   </div>
 </div>
 

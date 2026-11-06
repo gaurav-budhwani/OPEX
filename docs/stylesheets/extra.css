@@ -230,6 +230,13 @@ html, body, .md-container, .md-main, .md-content {
   border-left-color: var(--opex-blue-primary) !important;
 }
 
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 28px !important;
+  width: auto !important;
+  border-radius: 4px;
+}
+
 /* ==========================================================================
    Hero Box - Clean White & Cobalt Minimal
    ========================================================================== */
@@ -249,6 +256,44 @@ html, body, .md-container, .md-main, .md-content {
 
 .hero-box:hover {
   box-shadow: 0 4px 16px -2px rgba(37, 99, 235, 0.08);
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-mascot {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.hero-mascot img {
+  width: 135px;
+  height: auto;
+  border-radius: 8px;
+  filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.12));
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-mascot img:hover {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 640px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-tags, .hero-buttons {
+    justify-content: center;
+  }
 }
 
 .hero-tags {

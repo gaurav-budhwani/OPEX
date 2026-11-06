@@ -8,8 +8,8 @@ repo_name: gaurav-budhwani/OPEX
 theme:
   name: material
   language: en
-  logo: assets/logo.svg
-  favicon: assets/logo.svg
+  logo: assets/logo.png
+  favicon: assets/logo.png
   font: false
   palette:
     - scheme: default
