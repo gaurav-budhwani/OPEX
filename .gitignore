@@ -1,5 +1,6 @@
 # Build Artifacts
 parser
+opex
 lexer
 src/lex.yy.c
 src/parser.tab.c

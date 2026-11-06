@@ -3,10 +3,17 @@ CFLAGS = -I src
 FLEX = flex
 BISON = bison
 
-all: parser
+all: parser opex
 
 parser: src/lex.yy.c src/parser.tab.c src/ast.c src/ir.c src/semantic.c src/codegen.c
 	$(CC) $(CFLAGS) src/lex.yy.c src/parser.tab.c src/ast.c src/ir.c src/semantic.c src/codegen.c -o parser
+
+opex: parser
+	cp -f parser opex
+
+install: opex
+	install -d /usr/local/bin
+	install -m 755 opex /usr/local/bin/opex
 
 src/lex.yy.c: src/lexer.l src/parser.tab.h
 	$(FLEX) -o src/lex.yy.c src/lexer.l
@@ -58,4 +65,4 @@ test_run: parser
 	./parser --run tests/edge_detection.opx
 
 clean:
-	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h src/parser.output parser out.c edges.ppm edges.png
+	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h src/parser.output parser opex out.c edges.ppm edges.png

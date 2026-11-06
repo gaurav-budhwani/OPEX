@@ -1,0 +1,81 @@
+site_name: OPEX Language & Compiler
+site_description: Documentation for OPEX (Optimized Processing Engine for eXecution), a domain-specific compiled language for algorithms and computer vision.
+site_author: Gaurav Budhwani, John Twipraham Debbarma, Harshit
+site_url: https://gaurav-budhwani.github.io/OPEX/
+repo_url: https://github.com/gaurav-budhwani/OPEX
+repo_name: gaurav-budhwani/OPEX
+
+theme:
+  name: material
+  language: en
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - attr_list
+  - tables
+  - def_list
+
+nav:
+  - Overview: index.md
+  - Getting Started:
+      - Installation & Build: getting-started/installation.md
+      - Hello World: getting-started/hello-world.md
+  - Language Reference:
+      - Types & Variables: language-guide/types-and-variables.md
+      - Control Flow: language-guide/control-flow.md
+      - Functions & Structs: language-guide/functions-and-structs.md
+      - Input & Output: language-guide/io.md
+  - Computer Vision:
+      - CV Types: computer-vision/cv-types.md
+      - Convolution & Pipeline: computer-vision/operators.md
+      - Built-in Operations: computer-vision/builtins.md
+  - Compiler Internals:
+      - Architecture Pipeline: compiler-internals/pipeline.md
+      - Lexical Analysis (Flex): compiler-internals/lexer.md
+      - Syntax & LALR(1) Parsing: compiler-internals/parser.md
+      - Intermediate Code (3AC): compiler-internals/intermediate-code.md
+      - Native Code Generation: compiler-internals/codegen.md
+  - Examples & Benchmarks:
+      - Edge Detection: examples/edge-detection.md
+      - Sorting & Searching: examples/sorting-and-searching.md
+      - Recursive Algorithms: examples/recursion.md
+      - Data Structures: examples/data-structures.md
+  - Academic Reports: reports/reports.md
