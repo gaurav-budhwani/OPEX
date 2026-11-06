@@ -5,24 +5,24 @@ hide:
 
 <div class="hero-box">
   <div class="hero-tags">
-    <span class="pill-black">CS327 Compilers</span>
-    <span class="pill-gray">C99 Backend</span>
-    <span class="pill-gray">Flex & Bison</span>
-    <span class="pill-gray">3AC Quadruples</span>
-    <span class="pill-gray">Computer Vision</span>
+    <span class="pill-purple">CS327 Compilers</span>
+    <span class="pill-subtle">C99 Backend</span>
+    <span class="pill-subtle">Flex & Bison</span>
+    <span class="pill-subtle">3AC Quadruples</span>
+    <span class="pill-subtle">Computer Vision</span>
   </div>
   <h1 class="hero-headline">OPEX Programming Language</h1>
   <p class="hero-desc">
     Optimized Processing Engine for eXecution. A statically-typed domain-specific compiled language bridging algorithmic computing with first-class computer vision tensors, spatial convolution, and bare-metal native execution.
   </p>
   <div class="hero-buttons">
-    <a href="getting-started/installation/" class="btn-black">
+    <a href="getting-started/installation/" class="btn-purple">
       Documentation <span>&rarr;</span>
     </a>
-    <a href="compiler-internals/pipeline/" class="btn-white">
+    <a href="compiler-internals/pipeline/" class="btn-outline">
       Compiler Architecture
     </a>
-    <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-white">
+    <a href="https://github.com/gaurav-budhwani/OPEX" target="_blank" class="btn-outline">
       GitHub Repository <span>&rarr;</span>
     </a>
   </div>
@@ -131,17 +131,28 @@ The following example demonstrates an end-to-end edge detection pipeline written
 ## Compiler Pipeline
 
 ```mermaid
-flowchart LR
-    A["Source (.opx)"] --> B["Flex Scanner"]
-    B --> C["Bison LALR(1) Parser"]
-    C --> D["Abstract Syntax Tree"]
-    D --> E["Semantic Analysis"]
-    E --> F["Three-Address Code (3AC)"]
-    E --> G["C99 Code Generator"]
-    G --> H["Host Clang / GCC"]
-    H --> I["Native Executable Binary"]
+flowchart TD
+    subgraph Frontend ["Front-End Phase"]
+        A["Source Code (.opx)"] --> B["Lexical Analysis (Flex)"]
+        B --> C["LALR(1) Parsing (Bison)"]
+        C --> D["Abstract Syntax Tree (AST)"]
+    end
 
-    classDef default fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#000000;
+    subgraph Middle ["Middle-End Phase"]
+        D --> E["Scoped Semantic Analysis"]
+        E --> F["Three-Address Code (3AC) Quadruples"]
+    end
+
+    subgraph Backend ["Back-End Phase"]
+        E --> G["C99 Low-Level Codegen"]
+        G --> H["Host Clang / GCC Compilation"]
+        H --> I["Native Binary Executable (Mach-O / ELF)"]
+    end
+
+    classDef stage fill:#ffffff,stroke:#7c3aed,stroke-width:1.5px,color:#0f172a,rx:6px,ry:6px;
+    classDef sub fill:#fcfbfe,stroke:#ddd6fe,stroke-width:1px,color:#6d28d9;
+    class A,B,C,D,E,F,G,H,I stage;
+    class Frontend,Middle,Backend sub;
 ```
 
 ---

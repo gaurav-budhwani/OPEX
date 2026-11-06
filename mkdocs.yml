@@ -14,13 +14,11 @@ theme:
   palette:
     - scheme: default
       primary: white
-      accent: black
+      accent: deep purple
   features:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.path

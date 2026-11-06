@@ -1,6 +1,7 @@
 /* ==========================================================================
-   OPEX Minimalist Helvetica Theme
-   Clean, White Background, Swiss Typography, Ultra-Professional
+   OPEX Compiler Documentation Theme
+   Minimalist Swiss / Helvetica, White & Light Purple Palette
+   Smaller, Disciplined Typography & Smooth Micro-Animations
    ========================================================================== */
 
 :root {
@@ -10,397 +11,455 @@
   --md-text-font: var(--font-helvetica);
   --md-code-font: var(--font-mono);
 
-  /* Primary Light Theme Palette */
+  /* Color Tokens - White & Refined Purple */
+  --opex-white: #ffffff;
+  --opex-purple-primary: #7c3aed;
+  --opex-purple-hover: #6d28d9;
+  --opex-purple-light: #f5f3ff;
+  --opex-purple-border: #ddd6fe;
+  --opex-purple-pill-text: #6d28d9;
+
+  --opex-text-main: #0f172a;
+  --opex-text-muted: #475569;
+  --opex-text-light: #64748b;
+  --opex-border: #e2e8f0;
+  --opex-bg-card: #ffffff;
+  --opex-bg-subtle: #fcfbfe;
+
+  /* Material overrides */
   --md-primary-fg-color: #ffffff;
   --md-primary-bg-color: #ffffff;
-  --md-accent-fg-color: #000000;
+  --md-accent-fg-color: #7c3aed;
   --md-default-bg-color: #ffffff;
-  --md-default-fg-color: #111111;
-  --md-default-fg-color--light: #4b5563;
-  --md-default-fg-color--lighter: #6b7280;
-
+  --md-default-fg-color: #0f172a;
   --md-code-bg-color: #f8fafc;
   --md-code-fg-color: #0f172a;
-
-  --opex-border: #e5e7eb;
-  --opex-border-dark: #111111;
-  --opex-bg-muted: #f9fafb;
 }
 
-/* Force clean white background across the entire interface */
+/* Force clean white background */
 html, body, .md-container, .md-main, .md-content {
-  background-color: #ffffff !important;
-  color: #111111 !important;
+  background-color: var(--opex-white) !important;
+  color: var(--opex-text-main) !important;
   font-family: var(--font-helvetica) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Hierarchy - Restrained & Professional */
+/* Page Load Animation */
+.md-content__inner {
+  animation: opexFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes opexFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Restrained, Smaller Typography */
 .md-typeset {
   font-family: var(--font-helvetica) !important;
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: #1f2937;
+  font-size: 0.84rem !important;
+  line-height: 1.6 !important;
+  color: var(--opex-text-muted) !important;
 }
 
 .md-typeset h1 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.85rem !important;
+  font-size: 1.45rem !important;
   font-weight: 700 !important;
-  letter-spacing: -0.025em !important;
-  color: #000000 !important;
-  margin-top: 1rem !important;
-  margin-bottom: 1rem !important;
+  letter-spacing: -0.02em !important;
+  color: var(--opex-text-main) !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.75rem !important;
   line-height: 1.25 !important;
 }
 
 .md-typeset h2 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.35rem !important;
+  font-size: 1.15rem !important;
   font-weight: 700 !important;
-  letter-spacing: -0.02em !important;
-  color: #000000 !important;
-  margin-top: 2rem !important;
-  margin-bottom: 0.75rem !important;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--opex-border) !important;
+  letter-spacing: -0.015em !important;
+  color: var(--opex-text-main) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-bottom: 0.3rem !important;
+  border-bottom: 1px solid var(--opex-purple-border) !important;
 }
 
 .md-typeset h3 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.05rem !important;
+  font-size: 0.95rem !important;
   font-weight: 600 !important;
   letter-spacing: -0.01em !important;
-  color: #111111 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.5rem !important;
+  color: var(--opex-text-main) !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.4rem !important;
 }
 
 .md-typeset p, .md-typeset li {
-  color: #374151;
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: 0.84rem !important;
+  line-height: 1.6 !important;
+  color: #334155 !important;
 }
 
 .md-typeset strong {
-  color: #000000;
+  color: var(--opex-text-main);
   font-weight: 600;
 }
 
-/* Header - Minimalist White & Solid Border */
+/* Header - Clean White & Subtle Lavender Bottom Border */
 .md-header {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border-bottom: 1px solid var(--opex-border) !important;
-  box-shadow: none !important;
+  background-color: var(--opex-white) !important;
+  color: var(--opex-text-main) !important;
+  border-bottom: 1px solid var(--opex-purple-border) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
 }
 
 .md-header__title {
-  color: #000000 !important;
+  color: var(--opex-text-main) !important;
   font-weight: 700 !important;
   letter-spacing: -0.02em !important;
-  font-size: 0.95rem !important;
+  font-size: 0.88rem !important;
 }
 
 .md-header__button {
-  color: #000000 !important;
+  color: var(--opex-purple-primary) !important;
 }
 
 .md-search__input {
-  background-color: #f3f4f6 !important;
-  color: #000000 !important;
-  border: 1px solid var(--opex-border) !important;
+  background-color: var(--opex-purple-light) !important;
+  color: var(--opex-text-main) !important;
+  border: 1px solid var(--opex-purple-border) !important;
   border-radius: 6px !important;
-  font-size: 0.85rem !important;
-}
-
-/* Tabs Navigation */
-.md-tabs {
-  background-color: #ffffff !important;
-  border-bottom: 1px solid var(--opex-border) !important;
-}
-
-.md-tabs__link {
-  color: #6b7280 !important;
-  font-family: var(--font-helvetica) !important;
-  font-size: 0.82rem !important;
-  font-weight: 500 !important;
-  padding: 0.6rem 0.8rem !important;
-  opacity: 1 !important;
-  transition: color 0.15s ease;
-}
-
-.md-tabs__link:hover {
-  color: #000000 !important;
-}
-
-.md-tabs__item--active .md-tabs__link {
-  color: #000000 !important;
-  font-weight: 700 !important;
-  border-bottom: 2px solid #000000;
-}
-
-/* Sidebar Navigation */
-.md-nav__link {
-  font-family: var(--font-helvetica) !important;
-  font-size: 0.85rem !important;
-  color: #4b5563 !important;
-  transition: color 0.15s ease;
-}
-
-.md-nav__link:hover {
-  color: #000000 !important;
-}
-
-.md-nav__link--active {
-  color: #000000 !important;
-  font-weight: 700 !important;
+  font-size: 0.8rem !important;
 }
 
 /* ==========================================================================
-   Minimal Hero Section (Matching Portfolio)
+   Vertical Left Sidebar Navigation
+   ========================================================================== */
+
+.md-sidebar--primary {
+  border-right: 1px solid var(--opex-border);
+}
+
+.md-nav--primary .md-nav__title {
+  font-family: var(--font-helvetica) !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--opex-purple-primary) !important;
+  padding: 0.75rem 0.5rem 0.4rem !important;
+}
+
+.md-nav__item {
+  margin: 1px 0;
+}
+
+.md-nav__link {
+  font-family: var(--font-helvetica) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.4 !important;
+  color: var(--opex-text-muted) !important;
+  padding: 5px 10px !important;
+  border-radius: 4px;
+  border-left: 2px solid transparent;
+  transition: all 0.15s ease !important;
+}
+
+.md-nav__link:hover {
+  color: var(--opex-purple-primary) !important;
+  background-color: var(--opex-purple-light) !important;
+  border-left-color: var(--opex-purple-primary) !important;
+  transform: translateX(2px);
+}
+
+.md-nav__link--active {
+  color: var(--opex-purple-primary) !important;
+  font-weight: 700 !important;
+  background-color: var(--opex-purple-light) !important;
+  border-left-color: var(--opex-purple-primary) !important;
+}
+
+/* ==========================================================================
+   Hero Box - White & Light Purple Minimal
    ========================================================================== */
 
 .hero-box {
-  background-color: #ffffff;
-  border: 1px solid var(--opex-border);
+  background-color: var(--opex-bg-subtle);
+  border: 1px solid var(--opex-purple-border);
   border-radius: 8px;
-  padding: 2.5rem 2rem;
-  margin-bottom: 2rem;
+  padding: 1.75rem 1.5rem;
+  margin-bottom: 1.75rem;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(to right, rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 58, 237, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  transition: box-shadow 0.2s ease;
+}
+
+.hero-box:hover {
+  box-shadow: 0 4px 16px -2px rgba(124, 58, 237, 0.08);
 }
 
 .hero-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 1.25rem;
+  gap: 6px;
+  margin-bottom: 0.85rem;
 }
 
-.pill-black {
+.pill-purple {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background-color: #000000;
+  letter-spacing: 0.06em;
+  background-color: var(--opex-purple-primary);
   color: #ffffff !important;
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: 9999px;
   text-decoration: none !important;
+  transition: transform 0.15s ease;
 }
 
-.pill-gray {
+.pill-purple:hover {
+  transform: translateY(-1px);
+}
+
+.pill-subtle {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: 0.68rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  background-color: #f3f4f6;
-  color: #374151 !important;
-  padding: 4px 10px;
+  letter-spacing: 0.04em;
+  background-color: var(--opex-purple-light);
+  color: var(--opex-purple-pill-text) !important;
+  padding: 2px 8px;
   border-radius: 9999px;
-  border: 1px solid var(--opex-border);
+  border: 1px solid var(--opex-purple-border);
 }
 
 .hero-headline {
   font-family: var(--font-helvetica) !important;
-  font-size: 2.25rem !important;
+  font-size: 1.65rem !important;
   font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
-  line-height: 1.15 !important;
-  color: #000000 !important;
-  margin: 0 0 1rem 0 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.2 !important;
+  color: var(--opex-text-main) !important;
+  margin: 0 0 0.5rem 0 !important;
 }
 
 .hero-desc {
   font-family: var(--font-helvetica) !important;
-  font-size: 1.05rem !important;
-  line-height: 1.6 !important;
-  color: #4b5563 !important;
-  max-width: 720px;
-  margin: 0 0 1.5rem 0 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  color: var(--opex-text-muted) !important;
+  max-width: 680px;
+  margin: 0 0 1.25rem 0 !important;
 }
 
 .hero-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
-.btn-black {
+.btn-purple {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #000000;
+  background-color: var(--opex-purple-primary);
   color: #ffffff !important;
-  padding: 8px 18px;
+  padding: 6px 14px;
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-decoration: none !important;
-  transition: background-color 0.15s ease;
-  border: 1px solid #000000;
+  border: 1px solid var(--opex-purple-primary);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-black:hover {
-  background-color: #262626;
+.btn-purple:hover {
+  background-color: var(--opex-purple-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
   color: #ffffff !important;
 }
 
-.btn-white {
+.btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #ffffff;
-  color: #000000 !important;
-  padding: 8px 18px;
+  background-color: var(--opex-white);
+  color: var(--opex-text-main) !important;
+  padding: 6px 14px;
   border-radius: 9999px;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-decoration: none !important;
-  border: 1px solid #000000;
-  transition: background-color 0.15s ease;
+  border: 1px solid var(--opex-purple-border);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-white:hover {
-  background-color: #f9fafb;
-  color: #000000 !important;
+.btn-outline:hover {
+  border-color: var(--opex-purple-primary);
+  color: var(--opex-purple-primary) !important;
+  background-color: var(--opex-purple-light);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================
-   Minimal Clean Cards Grid
+   Minimal Grid & Interactive Cards
    ========================================================================== */
 
 .minimal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin: 1.25rem 0;
 }
 
 .minimal-card {
-  background-color: #ffffff;
+  background-color: var(--opex-bg-card);
   border: 1px solid var(--opex-border);
   border-radius: 6px;
-  padding: 18px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .minimal-card:hover {
-  border-color: #111111;
+  transform: translateY(-2px);
+  border-color: var(--opex-purple-primary);
+  box-shadow: 0 4px 14px -3px rgba(124, 58, 237, 0.12);
 }
 
 .minimal-card h3 {
   font-family: var(--font-helvetica) !important;
-  font-size: 1rem !important;
+  font-size: 0.88rem !important;
   font-weight: 700 !important;
-  margin: 0 0 6px 0 !important;
-  color: #000000 !important;
+  margin: 0 0 5px 0 !important;
+  color: var(--opex-text-main) !important;
   border: none !important;
   padding: 0 !important;
 }
 
 .minimal-card p {
-  font-size: 0.85rem !important;
-  line-height: 1.5 !important;
-  color: #4b5563 !important;
-  margin: 0 0 12px 0 !important;
+  font-size: 0.78rem !important;
+  line-height: 1.45 !important;
+  color: var(--opex-text-muted) !important;
+  margin: 0 0 10px 0 !important;
   flex-grow: 1;
 }
 
 .minimal-card .card-mono {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  color: #111111;
-  background-color: #f3f4f6;
+  color: var(--opex-purple-pill-text);
+  background-color: var(--opex-purple-light);
   padding: 2px 6px;
   border-radius: 4px;
   align-self: flex-start;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--opex-purple-border);
 }
 
 /* ==========================================================================
-   Code Blocks - Clean Gray Background & Monospace
+   Figures & Flowcharts (Mermaid Pipeline)
+   ========================================================================== */
+
+.mermaid {
+  display: flex;
+  justify-content: center;
+  background-color: var(--opex-bg-subtle) !important;
+  border: 1px solid var(--opex-purple-border) !important;
+  border-radius: 8px;
+  padding: 18px 12px;
+  margin: 1.25rem 0 !important;
+  box-shadow: 0 2px 8px -2px rgba(124, 58, 237, 0.05);
+  transition: all 0.2s ease;
+}
+
+.mermaid:hover {
+  border-color: var(--opex-purple-primary) !important;
+  box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.1);
+}
+
+/* ==========================================================================
+   Code Blocks & Monospace
    ========================================================================== */
 
 .md-typeset div.highlight {
   background-color: #f8fafc !important;
   border: 1px solid var(--opex-border) !important;
   border-radius: 6px !important;
-  margin: 1rem 0 !important;
+  margin: 0.85rem 0 !important;
   box-shadow: none !important;
 }
 
 .md-typeset pre > code {
   font-family: var(--font-mono) !important;
-  font-size: 0.82rem !important;
-  line-height: 1.6 !important;
+  font-size: 0.76rem !important;
+  line-height: 1.55 !important;
   color: #0f172a !important;
 }
 
 .md-typeset code {
   font-family: var(--font-mono) !important;
-  font-size: 0.82rem;
-  padding: 2px 5px;
-  background-color: #f3f4f6;
-  color: #111111;
-  border-radius: 4px;
-  border: 1px solid #e5e7eb;
+  font-size: 0.76rem !important;
+  padding: 1px 4px;
+  background-color: var(--opex-purple-light);
+  color: var(--opex-purple-pill-text);
+  border-radius: 3px;
+  border: 1px solid var(--opex-purple-border);
 }
 
-.md-clipboard {
-  color: #6b7280 !important;
-}
-
-.md-clipboard:hover {
-  color: #000000 !important;
-}
-
-/* Tabs & Admonitions */
+/* Tabs */
 .tabbed-set {
   border: 1px solid var(--opex-border);
   border-radius: 6px;
-  margin: 1rem 0;
+  margin: 0.85rem 0;
   overflow: hidden;
 }
 
 .tabbed-labels {
-  background-color: #f9fafb !important;
+  background-color: #f8fafc !important;
   border-bottom: 1px solid var(--opex-border);
 }
 
 .tabbed-labels > label {
   font-family: var(--font-mono) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.72rem !important;
   font-weight: 600 !important;
-  color: #4b5563 !important;
-  padding: 0.5rem 0.9rem !important;
+  color: var(--opex-text-muted) !important;
+  padding: 0.4rem 0.75rem !important;
+  transition: all 0.15s ease;
 }
 
 .tabbed-labels > label:hover {
-  color: #000000 !important;
+  color: var(--opex-purple-primary) !important;
 }
 
 .tabbed-labels > input:checked + label {
-  color: #000000 !important;
-  background-color: #ffffff !important;
-  border-bottom: 2px solid #000000 !important;
+  color: var(--opex-purple-primary) !important;
+  background-color: var(--opex-white) !important;
+  border-bottom: 2px solid var(--opex-purple-primary) !important;
 }
 
 .tabbed-content {
@@ -413,56 +472,58 @@ html, body, .md-container, .md-main, .md-content {
   margin: 0 !important;
 }
 
-/* Admonitions */
-.md-typeset .admonition {
-  border: 1px solid var(--opex-border) !important;
-  border-left: 3px solid #000000 !important;
-  border-radius: 4px !important;
-  background-color: #fafafa !important;
-  box-shadow: none !important;
-}
-
-.md-typeset .admonition__title {
-  font-weight: 700 !important;
-  color: #000000 !important;
-  font-size: 0.85rem !important;
-}
-
 /* Tables */
 .md-typeset table:not([class]) {
   border: 1px solid var(--opex-border) !important;
-  border-radius: 4px !important;
+  border-radius: 6px !important;
   border-collapse: collapse !important;
   box-shadow: none !important;
-  font-size: 0.85rem !important;
-  margin: 1rem 0 !important;
+  font-size: 0.78rem !important;
+  margin: 0.85rem 0 !important;
 }
 
 .md-typeset table:not([class]) th {
-  background-color: #f9fafb !important;
-  color: #000000 !important;
+  background-color: var(--opex-purple-light) !important;
+  color: var(--opex-purple-pill-text) !important;
   font-weight: 700 !important;
   font-family: var(--font-mono) !important;
   text-transform: uppercase !important;
-  font-size: 0.72rem !important;
+  font-size: 0.68rem !important;
   letter-spacing: 0.05em !important;
-  border-bottom: 1px solid var(--opex-border) !important;
-  padding: 8px 12px !important;
+  border-bottom: 1px solid var(--opex-purple-border) !important;
+  padding: 6px 10px !important;
 }
 
 .md-typeset table:not([class]) td {
   border-top: 1px solid var(--opex-border) !important;
-  padding: 8px 12px !important;
-  color: #374151 !important;
+  padding: 6px 10px !important;
+  color: var(--opex-text-muted) !important;
 }
 
-/* Footer Minimal */
+/* Admonitions */
+.md-typeset .admonition {
+  border: 1px solid var(--opex-border) !important;
+  border-left: 3px solid var(--opex-purple-primary) !important;
+  border-radius: 4px !important;
+  background-color: var(--opex-bg-subtle) !important;
+  font-size: 0.8rem !important;
+  margin: 0.85rem 0 !important;
+}
+
+.md-typeset .admonition__title {
+  font-weight: 700 !important;
+  color: var(--opex-purple-primary) !important;
+  font-size: 0.8rem !important;
+}
+
+/* Minimal Footer */
 .md-footer {
-  background-color: #ffffff !important;
-  color: #4b5563 !important;
+  background-color: var(--opex-white) !important;
+  color: var(--opex-text-light) !important;
   border-top: 1px solid var(--opex-border) !important;
+  font-size: 0.78rem !important;
 }
 
 .md-footer-meta {
-  background-color: #ffffff !important;
+  background-color: var(--opex-white) !important;
 }
