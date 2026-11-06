@@ -1,0 +1,180 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "OPEX",
+  "scopeName": "source.opex",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#booleans" },
+    { "include": "#keywords-program" },
+    { "include": "#keywords-control" },
+    { "include": "#types-cv" },
+    { "include": "#types-primitive" },
+    { "include": "#builtins-cv" },
+    { "include": "#builtins-io" },
+    { "include": "#operators" },
+    { "include": "#function-declarations" },
+    { "include": "#function-calls" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.opex",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.opex",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.opex",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.opex",
+              "match": "\\\\."
+            },
+            {
+              "name": "meta.interpolation.opex",
+              "begin": "\\{",
+              "end": "\\}",
+              "beginCaptures": {
+                "0": { "name": "punctuation.section.interpolation.begin.opex" }
+              },
+              "endCaptures": {
+                "0": { "name": "punctuation.section.interpolation.end.opex" }
+              },
+              "patterns": [
+                { "include": "$self" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.opex",
+          "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.integer.opex",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "booleans": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.opex",
+          "match": "\\b(TRUE|FALSE)\\b"
+        }
+      ]
+    },
+    "keywords-program": {
+      "patterns": [
+        {
+          "name": "keyword.control.program.opex",
+          "match": "\\b(PROGRAM|BEGIN|END|AUTO|RETURN)\\b"
+        },
+        {
+          "name": "keyword.declaration.type.opex",
+          "match": "\\b(STRUCT|ARRAY|OF)\\b"
+        }
+      ]
+    },
+    "keywords-control": {
+      "patterns": [
+        {
+          "name": "keyword.control.conditional.opex",
+          "match": "\\b(IF|THEN|ELSE|MATCH|WHEN|CASE|DEFAULT)\\b"
+        },
+        {
+          "name": "keyword.control.loop.opex",
+          "match": "\\b(FOR|TO|STEP|DO|FOREACH|IN|WHILE)\\b"
+        }
+      ]
+    },
+    "types-cv": {
+      "patterns": [
+        {
+          "name": "entity.name.type.cv.opex",
+          "match": "\\b(IMAGE|MATRIX|KERNEL|PIXEL)\\b"
+        }
+      ]
+    },
+    "types-primitive": {
+      "patterns": [
+        {
+          "name": "entity.name.type.primitive.opex",
+          "match": "\\b(INT|FLOAT|BOOL|STRING|VOID)\\b"
+        }
+      ]
+    },
+    "builtins-cv": {
+      "patterns": [
+        {
+          "name": "support.function.cv.opex",
+          "match": "\\b(LOAD|SAVE|GRAYSCALE|THRESHOLD|GAUSSIAN_BLUR|CONVOLVE|INVERT|HISTOGRAM_EQ|CANNY_EDGE|NORMALIZE|RESIZE|WIDTH|HEIGHT|CHANNELS|AT)\\b(?=\\s*\\()"
+        }
+      ]
+    },
+    "builtins-io": {
+      "patterns": [
+        {
+          "name": "support.function.io.opex",
+          "match": "\\b(PRINT|READ)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.opex",
+          "match": ":="
+        },
+        {
+          "name": "keyword.operator.convolution.opex",
+          "match": "\\*\\*"
+        },
+        {
+          "name": "keyword.operator.pipeline.opex",
+          "match": "\\|>"
+        },
+        {
+          "name": "keyword.operator.logical.opex",
+          "match": "\\b(AND|OR|NOT)\\b"
+        },
+        {
+          "name": "keyword.operator.comparison.opex",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.opex",
+          "match": "(\\+|-|\\*|/|%)"
+        }
+      ]
+    },
+    "function-declarations": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\([^)]*\\)\\s*:\\s*(INT|FLOAT|BOOL|STRING|VOID|IMAGE|MATRIX|KERNEL|PIXEL|[A-Z][a-zA-Z0-9_]*)\\b)",
+      "captures": {
+        "1": { "name": "entity.name.function.opex" }
+      }
+    },
+    "function-calls": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()",
+      "captures": {
+        "1": { "name": "entity.name.function.call.opex" }
+      }
+    }
+  }
+}

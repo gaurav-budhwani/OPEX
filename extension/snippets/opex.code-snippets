@@ -1,0 +1,136 @@
+{
+  "OPEX Program Skeleton": {
+    "prefix": "prog",
+    "body": [
+      "PROGRAM ${1:Main};",
+      "",
+      "// Global declarations",
+      "INT x := 0;",
+      "",
+      "BEGIN",
+      "\tPRINT(\"Starting ${1:Main}...\");",
+      "\t$0",
+      "END"
+    ],
+    "description": "Create a new OPEX program skeleton"
+  },
+  "Function Definition": {
+    "prefix": "func",
+    "body": [
+      "${1:function_name}(${2:INT a}, ${3:INT b}) : ${4:INT}",
+      "BEGIN",
+      "\t$0",
+      "\tRETURN ${5:0};",
+      "END"
+    ],
+    "description": "Define a typed OPEX function"
+  },
+  "Struct Declaration": {
+    "prefix": "struct",
+    "body": [
+      "STRUCT ${1:Point}",
+      "BEGIN",
+      "\tINT x;",
+      "\tINT y;",
+      "END;",
+      "$0"
+    ],
+    "description": "Define an OPEX struct"
+  },
+  "Image Load & Pipeline": {
+    "prefix": "pipeline",
+    "body": [
+      "IMAGE ${1:img} := LOAD(\"${2:input.png}\");",
+      "IMAGE ${3:processed} := ${1:img} |> GRAYSCALE() |> GAUSSIAN_BLUR(${4:5}, ${5:1.0}) |> THRESHOLD(${6:128});",
+      "SAVE(${3:processed}, \"${7:output.png}\");",
+      "$0"
+    ],
+    "description": "Full image loading, filtering pipeline, and save"
+  },
+  "Kernel Definition (3x3)": {
+    "prefix": "kernel",
+    "body": [
+      "KERNEL ${1:sobel_x} := [",
+      "\t[${2:-1}, ${3:0}, ${4:1}],",
+      "\t[${5:-2}, ${6:0}, ${7:2}],",
+      "\t[${8:-1}, ${9:0}, ${10:1}]",
+      "];",
+      "$0"
+    ],
+    "description": "Define a 2D convolution kernel"
+  },
+  "Convolution Operator": {
+    "prefix": "conv",
+    "body": [
+      "IMAGE ${1:filtered} := ${2:img} ** ${3:kernel};",
+      "$0"
+    ],
+    "description": "Convolve image with kernel"
+  },
+  "For Loop (Range)": {
+    "prefix": "for",
+    "body": [
+      "FOR ${1:i} := ${2:0} TO ${3:n - 1} DO",
+      "\t$0",
+      "END"
+    ],
+    "description": "Iterate with standard for-loop"
+  },
+  "For Loop With Step": {
+    "prefix": "forstep",
+    "body": [
+      "FOR ${1:i} := ${2:0} TO ${3:100} STEP ${4:2} DO",
+      "\t$0",
+      "END"
+    ],
+    "description": "For-loop with custom step size"
+  },
+  "Foreach Loop": {
+    "prefix": "foreach",
+    "body": [
+      "FOREACH ${1:item} IN ${2:collection} DO",
+      "\t$0",
+      "END"
+    ],
+    "description": "Iterate over an array or pixel collection"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "WHILE ${1:condition} DO",
+      "\t$0",
+      "END"
+    ],
+    "description": "While condition loop"
+  },
+  "If-Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "IF ${1:condition} THEN",
+      "\t${2:// true branch}",
+      "ELSE",
+      "\t${3:// false branch}",
+      "END"
+    ],
+    "description": "Conditional if-else block"
+  },
+  "Match Statement": {
+    "prefix": "match",
+    "body": [
+      "MATCH ${1:val} WITH",
+      "\tCASE ${2:0}: PRINT(\"${3:Zero}\");",
+      "\tCASE ${4:1}: PRINT(\"${5:One}\");",
+      "\tDEFAULT: PRINT(\"${6:Other}\");",
+      "END"
+    ],
+    "description": "Pattern match block"
+  },
+  "Print Interpolation": {
+    "prefix": "print",
+    "body": [
+      "PRINT(\"${1:Value is}: {${2:variable}}\");",
+      "$0"
+    ],
+    "description": "Formatted print statement with string interpolation"
+  }
+}

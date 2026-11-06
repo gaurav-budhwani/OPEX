@@ -98,6 +98,25 @@ Ensure `gcc`, `flex`, and `bison` are installed.
 
 ---
 
+## IDE Extension (VS Code & Antigravity IDE)
+
+An official IDE extension is included in the `extension/` directory.
+
+- **Syntax Highlighting**: Full keyword, operator, and CV-type coloring for `.opx` files.
+- **One-Click Run**: Click the **▶ Run** button in the editor tab bar or hit `Cmd+Option+R` (`Ctrl+Alt+R`) to execute active OPEX files immediately.
+- **Diagnostics**: Inline syntax & semantic error squiggles on file save and in the Problems panel.
+- **Snippets**: Pre-built snippets for image pipelines, kernels, structs, functions, loops, and pattern matching.
+- **3AC Inspector**: Inspect intermediate representation quadruples directly inside the editor.
+
+### Install Extension
+```bash
+make install-extension
+# Or install pre-built VSIX:
+code --install-extension extension/opex-language-1.0.0.vsix
+```
+
+---
+
 ## Contributors (CS327)
 - **Gaurav Budhwani** (22110085)
 - **John Twipraham Debbarma** (22110108)

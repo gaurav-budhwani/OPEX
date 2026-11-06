@@ -3,7 +3,7 @@ CFLAGS = -I src
 FLEX = flex
 BISON = bison
 
-.PHONY: all clean test test_derivations test_all test_semantic test_ir test_run docs docs-serve deploy install
+.PHONY: all clean test test_derivations test_all test_semantic test_ir test_run docs docs-serve deploy install extension install-extension
 
 all: parser opex
 
@@ -92,6 +92,18 @@ deploy:
 	else \
 		echo "mkdocs not found. Run: python3 -m venv .venv && .venv/bin/pip install mkdocs-material"; exit 1; \
 	fi
+
+extension:
+	cd extension && npx --yes @vscode/vsce package --no-dependencies
+
+install-extension:
+	mkdir -p $(HOME)/.vscode/extensions/opex-language
+	cp -rf extension/* $(HOME)/.vscode/extensions/opex-language/
+	@if [ -d "$(HOME)/.antigravity/extensions" ]; then \
+		mkdir -p $(HOME)/.antigravity/extensions/opex-language; \
+		cp -rf extension/* $(HOME)/.antigravity/extensions/opex-language/; \
+	fi
+	@echo "OPEX extension installed successfully to IDE extensions directory!"
 
 clean:
 	rm -f src/lex.yy.c src/parser.tab.c src/parser.tab.h src/parser.output parser opex out.c edges.ppm edges.png

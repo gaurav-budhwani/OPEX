@@ -1,0 +1,133 @@
+{
+  "name": "opex-language",
+  "displayName": "OPEX Language Support",
+  "description": "Rich language support for OPEX: syntax highlighting, snippets, semantic validation, and native execution.",
+  "version": "1.0.0",
+  "publisher": "gaurav-budhwani",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaurav-budhwani/OPEX.git"
+  },
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "opex",
+    "compiler",
+    "computer-vision",
+    "dsl",
+    "c99"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:opex"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "opex",
+        "aliases": [
+          "OPEX",
+          "opex"
+        ],
+        "extensions": [
+          ".opx"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icon.png",
+          "dark": "./icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "opex",
+        "scopeName": "source.opex",
+        "path": "./syntaxes/opex.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "opex",
+        "path": "./snippets/opex.code-snippets"
+      }
+    ],
+    "configuration": {
+      "title": "OPEX",
+      "properties": {
+        "opex.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "Custom absolute path to the opex compiler binary. Defaults to workspace ./opex binary."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "opex.run",
+        "title": "OPEX: Run Active File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "opex.compile",
+        "title": "OPEX: Compile to Standalone Native Binary",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "opex.check",
+        "title": "OPEX: Run Semantic Type-Check",
+        "icon": "$(pass)"
+      },
+      {
+        "command": "opex.showIR",
+        "title": "OPEX: Show 3-Address Code (3AC)",
+        "icon": "$(symbol-structure)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "opex.run",
+          "when": "resourceExtname == .opx",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "opex.run",
+          "when": "resourceExtname == .opx",
+          "group": "1_opex"
+        },
+        {
+          "command": "opex.compile",
+          "when": "resourceExtname == .opx",
+          "group": "1_opex"
+        },
+        {
+          "command": "opex.check",
+          "when": "resourceExtname == .opx",
+          "group": "1_opex"
+        },
+        {
+          "command": "opex.showIR",
+          "when": "resourceExtname == .opx",
+          "group": "1_opex"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "opex.run",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": "editorTextFocus && editorLangId == opex"
+      }
+    ]
+  }
+}
