@@ -205,6 +205,16 @@ html, body, .md-container, .md-main, .md-content {
   margin: 1px 0;
 }
 
+/* Ensure mobile TOC label is never displayed as a duplicate in primary nav */
+.md-sidebar--primary label.md-nav__link[for="__toc"],
+label.md-nav__link[for="__toc"] {
+  display: none !important;
+}
+
+.md-sidebar--primary .md-nav--secondary {
+  display: none !important;
+}
+
 .md-nav__link {
   font-family: var(--font-helvetica) !important;
   font-size: 0.76rem !important;
