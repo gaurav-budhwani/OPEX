@@ -3,7 +3,7 @@ CFLAGS = -I src
 FLEX = flex
 BISON = bison
 
-.PHONY: all clean test test_derivations test_all test_semantic test_ir test_run docs docs-serve install
+.PHONY: all clean test test_derivations test_all test_semantic test_ir test_run docs docs-serve deploy install
 
 all: parser opex
 
@@ -80,6 +80,15 @@ docs-serve:
 		.venv/bin/mkdocs serve; \
 	elif command -v mkdocs >/dev/null 2>&1; then \
 		mkdocs serve; \
+	else \
+		echo "mkdocs not found. Run: python3 -m venv .venv && .venv/bin/pip install mkdocs-material"; exit 1; \
+	fi
+
+deploy:
+	@if [ -d ".venv" ]; then \
+		.venv/bin/mkdocs gh-deploy --force; \
+	elif command -v mkdocs >/dev/null 2>&1; then \
+		mkdocs gh-deploy --force; \
 	else \
 		echo "mkdocs not found. Run: python3 -m venv .venv && .venv/bin/pip install mkdocs-material"; exit 1; \
 	fi
