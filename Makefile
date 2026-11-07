@@ -97,11 +97,11 @@ extension:
 	cd extension && npx --yes @vscode/vsce package --no-dependencies
 
 install-extension:
-	mkdir -p $(HOME)/.vscode/extensions/opex-language
-	cp -rf extension/* $(HOME)/.vscode/extensions/opex-language/
+	mkdir -p $(HOME)/.vscode/extensions/gaurav-budhwani.opex-language-1.0.0
+	cp -rf extension/* $(HOME)/.vscode/extensions/gaurav-budhwani.opex-language-1.0.0/
 	@if [ -d "$(HOME)/.antigravity/extensions" ]; then \
-		mkdir -p $(HOME)/.antigravity/extensions/opex-language; \
-		cp -rf extension/* $(HOME)/.antigravity/extensions/opex-language/; \
+		mkdir -p $(HOME)/.antigravity/extensions/gaurav-budhwani.opex-language-1.0.0; \
+		cp -rf extension/* $(HOME)/.antigravity/extensions/gaurav-budhwani.opex-language-1.0.0/; \
 	fi
 	@echo "OPEX extension installed successfully to IDE extensions directory!"
 

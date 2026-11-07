@@ -73,3 +73,4 @@ You can customize the extension via your VS Code `settings.json`:
 ## License
 
 MIT © Gaurav Budhwani
+
